@@ -1,0 +1,18 @@
+#还有命令创ttyd
+
+
+#,.USB共享上网，proto_3g.lua  proto-bonding??  include madam
+
+#ERROR: please fix feeds/opentopd/adguardhome/Makefile - see logs/feeds/opentopd/adguardhome/dump.txt for details
+#ERROR: please fix feeds/opentopd/packr/Makefile - see logs/feeds/opentopd/packr/dump.txt for details
+
+
+git pull
+./scripts/feeds update -a && ./scripts/feeds install -a
+#找到需要编译的插件的名称
+make menuconfig
+#开始编译插件
+make package/(插件名)/compile V=99
+#例如: 编译password插件
+make package/luci-app-passwall/compile V=99
+
