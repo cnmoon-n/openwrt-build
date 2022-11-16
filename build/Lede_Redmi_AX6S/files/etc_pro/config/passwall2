@@ -1,17 +1,19 @@
 
 config global
 	option localhost_proxy '1'
-	option direct_dns_protocol 'auto'
 	option remote_dns_protocol 'tcp'
-	option remote_dns '1.1.1.1'
 	option dns_query_strategy 'UseIPv4'
 	option close_log '0'
 	option loglevel 'error'
-	option enabled '1'
-	option dns_hosts 'cloudflare-dns.com 1.1.1.1
-dns.google.com 8.8.8.8'
 	option node 'myshunt'
 	option socks_enabled '1'
+	option dns_hosts 'cloudflare-dns.com 1.1.1.1
+dns.google.com 8.8.8.8
+'
+	option remote_dns '1.1.1.1'
+	option enabled '1'
+	option direct_dns_protocol 'tcp'
+	option direct_dns '127.0.0.1:1745'
 
 config global_delay
 	option auto_on '0'
@@ -57,9 +59,9 @@ config auto_switch
 	option connect_timeout '3'
 	option retry_num '3'
 	option shunt_logic '1'
-	option enable '1'
 	list node '87b1bb27c8fc4f03be191979244fcbea'
 	option restore_switch '1'
+	option enable '0'
 
 config nodes 'myshunt'
 	option remarks '分流总节点'
@@ -195,8 +197,8 @@ config nodes '1d2986479906477e8a61328028c36c7a'
 	option address 'linuxone.etceye.eu.org'
 
 config socks '5a741ad0f67643c8aa380a28a1792386'
-	option enabled '1'
 	option port '1080'
 	option http_port '0'
 	option node '87b1bb27c8fc4f03be191979244fcbea'
+	option enabled '0'
 
