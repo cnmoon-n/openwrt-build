@@ -1,18 +1,18 @@
 
 config global
-	option localhost_proxy '1'
-	option remote_dns_protocol 'tcp'
 	option dns_query_strategy 'UseIPv4'
 	option close_log '0'
 	option loglevel 'error'
-	option node 'myshunt'
-	option socks_enabled '1'
 	option dns_hosts 'cloudflare-dns.com 1.1.1.1
 dns.google.com 8.8.8.8
 '
-	option remote_dns '1.1.1.1'
+	option socks_enabled '0'
+	option node 'myshunt'
+	option localhost_proxy '0'
 	option enabled '1'
-	option direct_dns_protocol 'tcp'
+	option remote_dns_protocol 'udp'
+	option remote_dns '127.0.0.1:1745'
+	option direct_dns_protocol 'udp'
 	option direct_dns '127.0.0.1:1745'
 
 config global_delay
@@ -35,10 +35,14 @@ config global_other
 	option nodes_ping 'auto_ping tcping'
 
 config global_rules
-	option auto_update '0'
 	option geosite_update '1'
 	option geoip_update '1'
 	option v2ray_location_asset '/usr/share/v2ray/'
+	option auto_update '1'
+	option week_update '7'
+	option time_update '4'
+	option geoip_url 'https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases/latest'
+	option geosite_url 'https://api.github.com/repos/Loyalsoldier/v2ray-rules-dat/releases/latest'
 
 config global_app
 	option v2ray_file '/usr/bin/v2ray'
@@ -68,16 +72,16 @@ config nodes 'myshunt'
 	option type 'Xray'
 	option protocol '_shunt'
 	option Direct '_direct'
-	option AD 'nil'
 	option BT '_direct'
-	option Netflix 'nil'
-	option TVB 'nil'
 	option Proxy '_default'
 	option China '_direct'
-	option QUIC '_blackhole'
-	option UDP 'nil'
 	option domainStrategy 'IPOnDemand'
 	option domainMatcher 'hybrid'
+	option Netflix '_default'
+	option TVB '_default'
+	option QUIC '_direct'
+	option UDP '_direct'
+	option AD '_blackhole'
 	option default_node '1d2986479906477e8a61328028c36c7a'
 
 config shunt_rules 'Direct'
@@ -197,8 +201,17 @@ config nodes '1d2986479906477e8a61328028c36c7a'
 	option address 'linuxone.etceye.eu.org'
 
 config socks '5a741ad0f67643c8aa380a28a1792386'
-	option port '1080'
 	option http_port '0'
-	option node '87b1bb27c8fc4f03be191979244fcbea'
+	option port '8080'
+	option node '1d2986479906477e8a61328028c36c7a'
 	option enabled '0'
+
+config nodes '1e8f264de2ab44ef9ae4a38235d83820'
+	option remarks 'naive负载均衡'
+	option type 'Xray'
+	option protocol '_balancing'
+	list balancing_node '87b1bb27c8fc4f03be191979244fcbea'
+	list balancing_node '1d2986479906477e8a61328028c36c7a'
+	option domainStrategy 'AsIs'
+	option domainMatcher 'hybrid'
 
