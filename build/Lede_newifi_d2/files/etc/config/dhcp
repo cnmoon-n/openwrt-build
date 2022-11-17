@@ -1,45 +1,30 @@
 
 config dnsmasq
 	option domainneeded '1'
-	option boguspriv '1'
-	option filterwin2k '0'
 	option localise_queries '1'
+	option rebind_protection '1'
 	option rebind_localhost '1'
 	option local '/lan/'
 	option domain 'lan'
 	option expandhosts '1'
-	option nonegcache '0'
 	option authoritative '1'
 	option readethers '1'
 	option leasefile '/tmp/dhcp.leases'
-	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
 	option nonwildcard '1'
-	option ednspacket_max '1232'
-	option port '53'
-	option dns_redirect '1'
-	option allservers '1'
-	option min_ttl '3600'
-	option cachesize '4096'
-	option dnsforwardmax '4096'
-	option localservice '0'
-	option rebind_protection '0'
+	option localservice '1'
 	option localuse '1'
-	option noresolv '0'
+	option port '53'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
 
 config dhcp 'lan'
 	option interface 'lan'
-	option start '100'
-	option limit '150'
+	option start '10'
+	option limit '190'
 	option leasetime '12h'
-	option dhcpv4 'server'
 	option ra_slaac '1'
 	list ra_flags 'managed-config'
 	list ra_flags 'other-config'
-	option force '1'
-	option ra 'hybrid'
-	option ndp 'hybrid'
-	option dhcpv6 'hybrid'
-	option ra_management '1'
+	option ra 'server'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -57,3 +42,60 @@ config srvhost
 	option port '1688'
 	option class '0'
 	option weight '100'
+
+config host
+	option name 'ma-rom'
+	option dns '1'
+	option mac 'bc:25:e0:45:12:d8'
+	option ip '192.168.8.194'
+
+config host
+	option dns '1'
+	option mac 'D4:B7:61:99:BD:0B'
+	option ip '192.168.8.138'
+	option name 'hasens-wifi'
+
+config host
+	option dns '1'
+	option mac '08:BA:5F:AD:8D:DB'
+	option ip '192.168.8.201'
+	option name 'hasens-lan'
+
+config host
+	option name 'HQ5C'
+	option dns '1'
+	option mac '60:7d:09:20:64:06'
+	option ip '192.168.8.130'
+
+config host
+	option name 'route-D2'
+	option dns '1'
+	option mac '20:76:93:48:3a:ff'
+	option ip '192.168.8.2'
+
+config host
+	option name 'Unas-6'
+	option dns '1'
+	option mac '3e:99:2b:d4:5b:d0'
+	option ip '192.168.8.254'
+
+config host
+	option dns '1'
+	option mac '6c:2d:24:a6:ee:38'
+	option ip '192.168.8.177'
+	option name 'jx_watch'
+
+config host
+	option name 'X10'
+	option dns '1'
+	option mac '2c:c5:46:3f:2e:54'
+	option ip '192.168.8.152'
+
+config domain
+	option name 'openwrt.lan'
+	option ip '192.168.8.1'
+
+config domain
+	option ip '192.168.8.254'
+	option name 'Jhome.lan'
+

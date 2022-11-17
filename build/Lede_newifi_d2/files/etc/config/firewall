@@ -246,9 +246,9 @@ config defaults
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
+	option flow_offloading '0'
+	option flow_offloading_hw '0'
 	option fullcone '1'
-	option flow_offloading '1'
-	option flow_offloading_hw '1'
 
 config zone
 	option name 'lan'
@@ -306,9 +306,20 @@ config include 'zerotier'
 	option path '/etc/zerotier.start'
 	option reload '1'
 
+config include 'miniupnpd'
+	option type 'script'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
+	option reload '1'
+
 config include 'mia'
 	option type 'script'
 	option path '/etc/mia.include'
+	option reload '1'
+
+config include 'openclash'
+	option type 'script'
+	option path '/var/etc/openclash.include'
 	option reload '1'
 
 config zone 'vpn'
@@ -326,6 +337,11 @@ config forwarding 'vpntolan'
 config forwarding 'lantovpn'
 	option src 'lan'
 	option dest 'vpn'
+
+config include 'unblockmusic'
+	option type 'script'
+	option path '/var/etc/unblockmusic.include'
+	option reload '1'
 
 config forwarding
 	option dest 'lan'
@@ -352,53 +368,8 @@ config rule
 	option target 'REJECT'
 	option src_mac 'BC:25:E0:45:12:D8'
 
-config include 'miniupnpd'
-	option type 'script'
-	option path '/usr/share/miniupnpd/firewall.include'
-	option family 'any'
-	option reload '1'
-
-config include 'openclash'
-	option type 'script'
-	option path '/var/etc/openclash.include'
-	option reload '1'
-
-config include 'shadowsocksr'
-	option type 'script'
-	option path '/var/etc/shadowsocksr.include'
-	option reload '1'
-
-config include 'unblockmusic'
-	option type 'script'
-	option path '/var/etc/unblockmusic.include'
-	option reload '1'
-
-config include 'v2ray_server'
-	option type 'script'
-	option path '/var/etc/v2ray_server.include'
-	option reload '1'
-
-config rule 'kms'
-	option target 'ACCEPT'
-	option src 'wan'
-	option proto 'tcp'
-	option name 'v2ray9301'
-	option dest_port '9301'
-
-config include 'wrtbwmon'
-	option type 'script'
-	option path '/etc/wrtbwmon.include'
-	option reload '1'
-
 config include 'AdGuardHome'
 	option type 'script'
 	option path '/usr/share/AdGuardHome/firewall.start'
 	option reload '1'
-
-config rule
-	option target 'ACCEPT'
-	option src 'wan'
-	option proto 'tcp'
-	option dest_port '9001'
-	option name 'v2ray9001'
 
