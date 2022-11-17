@@ -9,4 +9,6 @@ iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
 iptables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
 [ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-ports 53
 [ -n "$(command -v ip6tables)" ] && ip6tables -t nat -A PREROUTING -p tcp --dport 53 -j REDIRECT --to-ports 53
-chmod -R 0777 /etc
+#chmod -R 0777 /etc
+###ip6tables -t nat -A POSTROUTING -o wan -j MASQUERADE  #DHCP6不是ppp拨号获得ipv6
+####sh /etc/config/sh/gateway.sh  #DHCP6不是ppp拨号获得ipv6

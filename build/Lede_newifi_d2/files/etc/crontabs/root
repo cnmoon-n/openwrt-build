@@ -1,12 +1,10 @@
+*/3 * * * * sh /etc/config/sh/dynv6.sh
+0 2 * * * /usr/share/UnblockNeteaseMusic/update_core.sh 2>&1
+0 4 * * 7 /etc/init.d/firewall restart &> /dev/null
+0 4 * * 4 sh /etc/config/sh/re.sh &> /dev/null
+
 #0 4 * * * ifup wan &> /dev/null
 #*/5 * * * * sh /etc/config/sh/dynv6.sh &> /dev/null
 #*/1 * * * * sh /etc/config/sh/ipv6ping.sh &> /dev/null
 #0 */2 * * * sh /etc/config/sh/crontab.sh &> /dev/null
-0 4 * * * /etc/init.d/firewall restart &> /dev/null
-0 4 * * 1,4 sh /etc/config/sh/re.sh &> /dev/null
-*/3 * * * * sh /etc/config/sh/dynv6.sh
 
-15 */3 * * * /usr/bin/getnoddosdeviceprofiles;  if [ $? -gt 0 ]; then service noddos reload; fi
-#0 * * * * /usr/share/AdGuardHome/addhost.sh
-#30 3 * * * /usr/share/AdGuardHome/gfw2adg.sh
-0 2 * * * /usr/share/UnblockNeteaseMusic/update_core.sh 2>&1
