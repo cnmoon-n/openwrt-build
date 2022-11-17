@@ -10,7 +10,7 @@
 #
 
 # 使用源码自带passwall等出国软件
-#echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
+echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
 #echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
 echo src-git opentopd  https://github.com/281677160/AdGuardHome.git  >> feeds.conf.default
 #echo src-git opentopd  https://github.com/rufengsuixing/luci-app-adguardhome.git >> feeds.conf.default
