@@ -67,5 +67,17 @@ config servers
 	option local_port '3081'
 
 config servers
+	option type 'naiveproxy'
+	option alias 'woiden1'
+	option server 'woiden1.etceye.eu.org'
+	option server_port '34568'
+	option username 'useradmin'
+	option password 'password75501252'
+	option concurrency '4'
+	option switch_enable '1'
+	option local_port '3081'
+
+
+config servers
 	option switch_enable '0'
 
