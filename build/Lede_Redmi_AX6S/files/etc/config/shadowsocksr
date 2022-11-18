@@ -63,8 +63,8 @@ config servers
 	option username 'useradmin'
 	option password 'password75501252'
 	option concurrency '4'
-	option switch_enable '1'
 	option local_port '3081'
+	option switch_enable '0'
 
 config servers
 	option type 'naiveproxy'
@@ -74,10 +74,6 @@ config servers
 	option username 'useradmin'
 	option password 'password75501252'
 	option concurrency '4'
-	option switch_enable '1'
 	option local_port '3081'
-
-
-config servers
 	option switch_enable '0'
 
