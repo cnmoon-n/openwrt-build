@@ -15,19 +15,13 @@ config interface 'lan'
 	option netmask '255.255.255.0'
 	option ip6assign '60'
 
-config interface 'wan'
-	option ifname 'eth0.2'
-	option proto 'dhcp'
 
-config device 'wan_eth0_2_dev'
-	option name 'eth0.2'
-	option macaddr '20:76:93:00:67:43'
-
-config interface 'wan_v6'
-	option ifname 'eth0.2'
-	option ifname '@wan'
+config interface 'lan_v6'
+	option proto 'dhcpv6'
+	option ifname '@lan'
 	option reqaddress 'try'
 	option reqprefix 'auto'
+
 
 config switch
 	option name 'switch0'
@@ -46,3 +40,10 @@ config switch_vlan
 	option ports '5 6t'
 	option vid '2'
 
+config interface 'VPN_SERVER'
+	option proto 'none'
+	option ifname 'tun1'
+
+config interface 'vpn'
+	option proto 'none'
+	option ifname 'tun0'

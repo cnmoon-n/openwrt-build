@@ -6,8 +6,6 @@ config interface 'loopback'
 	option netmask '255.0.0.0'
 
 config globals 'globals'
-	option packet_steering '1'
-	option ula_prefix 'fd55:5991:371e::/48'
 
 config device
 	option name 'br-lan'
@@ -44,10 +42,6 @@ config interface 'modem'
 	option ipaddr '192.168.1.100'
 	option gateway '192.168.1.1'
 
-config interface 'vpn0'
-	option ifname 'tun0'
-	option proto 'none'
-
 config route
 	option interface 'lan'
 	option target '10.147.18.0'
@@ -65,4 +59,8 @@ config interface 'wan6'
 	option ifname 'wan'
 	option reqaddress 'try'
 	option reqprefix 'auto'
+
+config interface 'vpn0'
+	option ifname 'tun0'
+	option proto 'none'
 
