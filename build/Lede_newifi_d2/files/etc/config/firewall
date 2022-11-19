@@ -169,15 +169,6 @@ config rule
 	option target 'DROP'
 	option family 'ipv6'
 
-config rule 'openvpn'
-	option name 'note10 icmp'
-	option family 'ipv6'
-	option proto 'icmp'
-	option src 'lan'
-	option src_mac '88:F8:72:C6:04:AE'
-	option dest 'wan'
-	option target 'REJECT'
-
 config rule
 	option src 'lan'
 	option dest 'wan'
@@ -246,9 +237,9 @@ config defaults
 	option input 'ACCEPT'
 	option output 'ACCEPT'
 	option forward 'ACCEPT'
-	option flow_offloading '0'
-	option flow_offloading_hw '0'
 	option fullcone '1'
+	option flow_offloading '1'
+	option flow_offloading_hw '1'
 
 config zone
 	option name 'lan'
@@ -274,74 +265,23 @@ config zone
 	option output 'ACCEPT'
 	option name 'vpn_server'
 	option forward 'ACCEPT'
-	option network 'vpn_server'
 	option masq '1'
-
-config forwarding
-	option dest 'vpn'
-	option src 'vpn_server'
-
-config forwarding
-	option dest 'vpn_server'
-	option src 'vpn'
+	option network 'vpn_server'
 
 config forwarding
 	option dest 'vpn'
 	option src 'lan'
 
 config forwarding
-	option dest 'vpn_server'
-	option src 'lan'
-
-config forwarding
 	option dest 'lan'
 	option src 'vpn'
 
-config forwarding
-	option dest 'lan'
-	option src 'vpn_server'
-
-config include 'zerotier'
-	option type 'script'
-	option path '/etc/zerotier.start'
-	option reload '1'
-
-config include 'miniupnpd'
-	option type 'script'
-	option path '/usr/share/miniupnpd/firewall.include'
-	option family 'any'
-	option reload '1'
 
 config include 'mia'
 	option type 'script'
 	option path '/etc/mia.include'
 	option reload '1'
 
-config include 'openclash'
-	option type 'script'
-	option path '/var/etc/openclash.include'
-	option reload '1'
-
-config zone 'vpn'
-	option name 'vpn'
-	option input 'ACCEPT'
-	option forward 'ACCEPT'
-	option output 'ACCEPT'
-	option masq '1'
-	option network 'vpn0'
-
-config forwarding 'vpntolan'
-	option src 'vpn'
-	option dest 'lan'
-
-config forwarding 'lantovpn'
-	option src 'lan'
-	option dest 'vpn'
-
-config include 'unblockmusic'
-	option type 'script'
-	option path '/var/etc/unblockmusic.include'
-	option reload '1'
 
 config forwarding
 	option dest 'lan'
@@ -355,10 +295,6 @@ config forwarding
 	option dest 'wan'
 	option src 'vpn'
 
-config forwarding
-	option dest 'wan'
-	option src 'vpn_server'
-
 config rule
 	option proto 'tcp udp'
 	option name 'ma_rom_ipv4 _drop'
@@ -368,8 +304,58 @@ config rule
 	option target 'REJECT'
 	option src_mac 'BC:25:E0:45:12:D8'
 
-config include 'AdGuardHome'
+config include 'miniupnpd'
 	option type 'script'
-	option path '/usr/share/AdGuardHome/firewall.start'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
 	option reload '1'
+
+config rule 'openvpn'
+	option name 'openvpn'
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp udp'
+	option dest_port '1194'
+
+config zone 'vpn'
+	option name 'vpn'
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option output 'ACCEPT'
+	option masq '1'
+	option network 'vpn0'
+
+config forwarding 'vpntowan'
+	option src 'vpn'
+	option dest 'wan'
+
+config forwarding 'vpntolan'
+	option src 'vpn'
+	option dest 'lan'
+
+config forwarding 'lantovpn'
+	option src 'lan'
+	option dest 'vpn'
+
+
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'wan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'lan'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'vpn'
 

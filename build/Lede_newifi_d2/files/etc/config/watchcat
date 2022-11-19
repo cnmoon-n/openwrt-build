@@ -1,8 +1,0 @@
-
-config watchcat
-	option pinghosts '8.8.8.8'
-	option forcedelay '30'
-	option mode 'ping'
-	option period '6m'
-	option pingperiod '10'
-
