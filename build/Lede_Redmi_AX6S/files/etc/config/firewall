@@ -169,15 +169,6 @@ config rule
 	option target 'DROP'
 	option family 'ipv6'
 
-config rule 'openvpn'
-	option name 'note10 icmp'
-	option family 'ipv6'
-	option proto 'icmp'
-	option src 'lan'
-	option src_mac '88:F8:72:C6:04:AE'
-	option dest 'wan'
-	option target 'REJECT'
-
 config rule
 	option src 'lan'
 	option dest 'wan'
@@ -274,58 +265,23 @@ config zone
 	option output 'ACCEPT'
 	option name 'vpn_server'
 	option forward 'ACCEPT'
-	option network 'vpn_server'
 	option masq '1'
-
-config forwarding
-	option dest 'vpn'
-	option src 'vpn_server'
-
-config forwarding
-	option dest 'vpn_server'
-	option src 'vpn'
+	option network 'vpn_server'
 
 config forwarding
 	option dest 'vpn'
 	option src 'lan'
 
 config forwarding
-	option dest 'vpn_server'
-	option src 'lan'
-
-config forwarding
 	option dest 'lan'
 	option src 'vpn'
 
-config forwarding
-	option dest 'lan'
-	option src 'vpn_server'
-
-config include 'zerotier'
-	option type 'script'
-	option path '/etc/zerotier.start'
-	option reload '1'
 
 config include 'mia'
 	option type 'script'
 	option path '/etc/mia.include'
 	option reload '1'
 
-config zone 'vpn'
-	option name 'vpn'
-	option input 'ACCEPT'
-	option forward 'ACCEPT'
-	option output 'ACCEPT'
-	option masq '1'
-	option network 'vpn0'
-
-config forwarding 'vpntolan'
-	option src 'vpn'
-	option dest 'lan'
-
-config forwarding 'lantovpn'
-	option src 'lan'
-	option dest 'vpn'
 
 config forwarding
 	option dest 'lan'
@@ -338,10 +294,6 @@ config forwarding
 config forwarding
 	option dest 'wan'
 	option src 'vpn'
-
-config forwarding
-	option dest 'wan'
-	option src 'vpn_server'
 
 config rule
 	option proto 'tcp udp'
@@ -358,27 +310,57 @@ config include 'miniupnpd'
 	option family 'any'
 	option reload '1'
 
-config include 'openclash'
-	option type 'script'
-	option path '/var/etc/openclash.include'
-	option reload '1'
+config rule 'openvpn'
+	option name 'openvpn'
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp udp'
+	option dest_port '1194'
 
-config include 'shadowsocksr'
-	option type 'script'
-	option path '/var/etc/shadowsocksr.include'
-	option reload '1'
+config zone 'vpn'
+	option name 'vpn'
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option output 'ACCEPT'
+	option masq '1'
+	option network 'vpn0'
 
-config include 'unblockmusic'
-	option type 'script'
-	option path '/var/etc/unblockmusic.include'
-	option reload '1'
+config forwarding 'vpntowan'
+	option src 'vpn'
+	option dest 'wan'
 
-config include 'v2ray_server'
-	option type 'script'
-	option path '/var/etc/v2ray_server.include'
-	option reload '1'
+config forwarding 'vpntolan'
+	option src 'vpn'
+	option dest 'lan'
 
-config rule 'kms'
+config forwarding 'lantovpn'
+	option src 'lan'
+	option dest 'vpn'
+
+
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'wan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'lan'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'vpn'
+
+
+config rule 
 	option target 'ACCEPT'
 	option src 'wan'
 	option proto 'tcp'
@@ -401,4 +383,3 @@ config rule
 	option proto 'tcp'
 	option dest_port '9001'
 	option name 'v2ray9001'
-
