@@ -1,0 +1,79 @@
+
+config global
+	option netflix_server 'nil'
+	option netflix_proxy '0'
+	option dports '2'
+	option monitor_enable '1'
+	option enable_switch '1'
+	option switch_time '667'
+	option switch_timeout '5'
+	option switch_try_count '3'
+	option default_packet_encoding 'xudp'
+	option gfwlist_url 'https://fastly.jsdelivr.net/gh/YW5vbnltb3Vz/domain-list-community@release/gfwlist.txt'
+	option chnroute_url 'https://ispip.clang.cn/all_cn.txt'
+	option nfip_url 'https://fastly.jsdelivr.net/gh/QiuSimons/Netflix_IP/NF_only.txt'
+	option adblock_url 'https://anti-ad.net/anti-ad-for-dnsmasq.conf'
+	option threads '2'
+	option tunnel_forward '8.8.8.8:53'
+	option global_server 'cfg064a8f'
+	option run_mode 'gfw'
+	option pdnsd_enable '1'
+
+config server_subscribe
+	option proxy '0'
+	option auto_update_time '2'
+	option auto_update '1'
+	option filter_words '过期时间/剩余流量/QQ群/官网/防失联地址/回国'
+	option switch '1'
+
+config access_control
+	option lan_ac_mode '0'
+	option router_proxy '1'
+	list wan_fw_ips '149.154.160.0/20'
+	list wan_fw_ips '67.198.55.0/24'
+	list wan_fw_ips '91.108.4.0/22'
+	list wan_fw_ips '91.108.56.0/22'
+	list wan_fw_ips '109.239.140.0/24'
+	list Interface 'lan'
+
+config socks5_proxy
+	option server 'nil'
+	option local_port '1080'
+
+config server_global
+	option enable_server '0'
+
+config servers
+	option type 'naiveproxy'
+	option alias 'linuxone'
+	option server 'linuxone.etceye.eu.org'
+	option server_port '34568'
+	option username 'useradmin'
+	option password 'password75501252'
+	option concurrency '4'
+	option switch_enable '1'
+	option local_port '3080'
+	option ip '148.100.77.85'
+
+config servers
+	option type 'naiveproxy'
+	option alias 'woiden'
+	option server 'woiden.etceye.eu.org'
+	option server_port '34568'
+	option username 'useradmin'
+	option password 'password75501252'
+	option concurrency '4'
+	option local_port '3081'
+	option switch_enable '0'
+
+config servers
+	option type 'naiveproxy'
+	option alias 'woiden1'
+	option server 'woiden1.etceye.eu.org'
+	option server_port '34568'
+	option username 'useradmin'
+	option password 'password75501252'
+	option concurrency '4'
+	option local_port '3081'
+	option switch_enable '0'
+
