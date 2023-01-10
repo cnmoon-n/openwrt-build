@@ -39,7 +39,7 @@ on:
 env: 
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   SCKEY: ${{ secrets.SCKEY }}
-  GITHUB_RELEASE: https://github.com/etceye/lean-build/releases
+  GITHUB_RELEASE: https://github.com/cnmoon-n/openwrt-build/releases
   TZ: Asia/Shanghai
 
 jobs: 
