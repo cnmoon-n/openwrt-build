@@ -7,7 +7,7 @@
 #
 
 
-name: AX6S-D2
+name: ALL-Lienol
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
       name:
         description: 'build-openwrt'
         required: true
-        default: 'AX6S-D2'
+        default: 'ALL-Lienol'
 
 
 #编辑任意指定文件触发开始编译
