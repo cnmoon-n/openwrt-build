@@ -1,0 +1,13 @@
+http://www.gstatic.com/generate_204
+/usr/share/openclash/dashboard/assets/index*.js
+sed 's/http:\\www.gstatic.com\generate_204/http:\\www.youtube.com/' /usr/share/openclash/dashboard/assets/index*.js
+sed -i "s#http://www.gstatic.com/generate_204#http://www.youtube.com#" /usr/share/openclash/dashboard/assets/index*.js
+
+
+
+sed -i '/
+
+sed -i 's/www.gstatic.com\generate/www.youtube.com/' /usr/share/openclash/dashboard/assets/1.js
+
+
+"http://www.gstatic.com/generate_204"

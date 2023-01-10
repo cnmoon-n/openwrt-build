@@ -1,0 +1,46 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option packet_steering '1'
+
+config interface 'lan'
+	option type 'bridge'
+	option proto 'static'
+	option netmask '255.255.255.0'
+	option ipaddr '192.168.8.250'
+	option _orig_ifname 'eth0'
+	option _orig_bridge 'true'
+	option ifname 'eth0'
+	option gateway '192.168.8.1'
+	option ip6assign '60'
+	option dns '192.168.8.1'
+
+config interface 'lan_v6'
+	option proto 'dhcpv6'
+	option ifname '@lan'
+	option reqaddress 'try'
+	option reqprefix 'auto'
+
+config interface 'VPN_SERVER'
+	option proto 'none'
+	option ifname 'tun1'
+
+config interface 'vpn'
+	option proto 'none'
+	option ifname 'tun0'
+
+config route
+
+config interface 'zero'
+	option proto 'none'
+	option ifname 'ztr2qw6fd3'
+
+config interface 'vpn0'
+	option ifname 'tun0'
+	option proto 'none'
+
