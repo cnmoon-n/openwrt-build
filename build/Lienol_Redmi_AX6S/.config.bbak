@@ -10,30 +10,24 @@ CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-ntfs=y
 
 
-# ### ,nlbwmon=y # 流量监视器 appfilter=y ##特征库应用过滤 wrtbwmon=y #实时流量监控 watchcat=y #电子狗 openclash=y #支持naive 才有用
 
-
-CONFIG_PACKAGE_luci-app-openclash=y
-CONFIG_PACKAGE_luci-app-wrtbwmon=y 
-CONFIG_PACKAGE_luci-app-watchcat=y 
 CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-nlbwmon=y
-CONFIG_PACKAGE_appfilter=y
 
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs=y
 CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk=y
 CONFIG_PACKAGE_luci-app-firewall=y
-
+CONFIG_PACKAGE_luci-app-nlbwmon=y # 流量监视器
 CONFIG_PACKAGE_luci-app-ramfree=y
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-webui is not set
 # CONFIG_PACKAGE_luci-app-rclone_INCLUDE_rclone-ng is not set
 
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #kms激活服务器
-
+CONFIG_PACKAGE_appfilter=y ##特征库应用过滤
 # CONFIG_PACKAGE_luci-app-vsftpd is not set  ##ftp服务器
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set 上网时间控制
 # CONFIG_PACKAGE_luci-app-uhttpd is not set ##一个轻量级单线程 HTTP(S) 服务器
-
+#CONFIG_PACKAGE_luci-app-autoreboot=y####watchcat更好
+#CONFIG_PACKAGE_luci-app-jd-dailybonus=y #lean是没有的
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_odhcpd-ipv6only=y
 CONFIG_PACKAGE_odhcpd_ipv6only_ext_cer_id=0
@@ -64,7 +58,8 @@ CONFIG_PACKAGE_luci-app-statistics=y
 
 CONFIG_PACKAGE_luci-app-udpxy=y
 
-
+CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监控
+CONFIG_PACKAGE_luci-app-watchcat=y #电子狗
 
 CONFIG_PACKAGE_luci-app-unblockmusic=y
 CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_Go=y
@@ -72,7 +67,7 @@ CONFIG_PACKAGE_luci-app-unblockmusic_INCLUDE_UnblockNeteaseMusic_NodeJS=y
 CONFIG_PACKAGE_luci-app-mwan3helper=y
 CONFIG_PACKAGE_luci-app-mwan3=y
 
-
+#CONFIG_PACKAGE_luci-app-openclash=y #支持naive 才有用
 # CONFIG_PACKAGE_luci-app-v2ray-server is not set #太卡。除非用X86
 # CONFIG_PACKAGE_luci-app-pgyvpn is not set ##蒲公英VPN#个人1M，垃圾。
 
