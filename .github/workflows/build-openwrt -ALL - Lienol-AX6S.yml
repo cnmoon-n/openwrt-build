@@ -7,7 +7,7 @@
 #
 
 
-name: LEDE_ALL_Lienol-AX6S
+name: Lienol_Redmi_AX6S
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
       name:
         description: 'build-openwrt'
         required: true
-        default: 'LEDE_ALL_Lienol-AX6S'
+        default: 'Lienol_Redmi_AX6S'
 
 
 #编辑任意指定文件触发开始编译
@@ -87,8 +87,10 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update
-        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+        sudo -E apt-get -qq update -y
+        sudo -E apt-get -qq full-upgrade -y
+        sudo -E apt-get -qq install -y gawk git ccache gettext libssl-dev xsltproc zip git-core wget curl grep
+        sudo timedatectl set-timezone
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
@@ -148,7 +150,7 @@ jobs:
       id: package
       run: |
         cd openwrt
-        make download V=s
+        make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
     
@@ -225,8 +227,8 @@ jobs:
             ☆  分支 : ${{ env.REPO_BRANCH }}
             ☆  感谢源码作者无私分享！
             
-            🎉 [ ${{ env.WXFB_MESSAGE }} ]固件下载 ✨            
-           
+            🎉 [ ${{ env.WXFB_MESSAGE }} ]固件下载 ✨
+            
             ⛄ WeTransfer(国外高速🚀下载)： ${{ env.WETRANSFER_URL }}
             
             🌴 链接有效期为7天，无需注册直接下载 🐤
@@ -261,9 +263,7 @@ jobs:
               
               
               发布地址：${{ env.GITHUB_RELEASE }}
-                          
-                          
+              
+
               WeTransfer：${{ env.WETRANSFER_URL }}
               
-              
-              祝小主人见人爱，花见花开，车见车载，天天好心情🎈！！！
