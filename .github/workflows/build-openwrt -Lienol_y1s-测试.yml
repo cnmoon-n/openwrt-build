@@ -7,7 +7,7 @@
 #
 
 
-name: Y1S
+name: 测试Y1S
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
       name:
         description: 'build-openwrt'
         required: true
-        default: 'Y1S'
+        default: 'ceY1S'
 
 
 #编辑任意指定文件触发开始编译
