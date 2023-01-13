@@ -13,8 +13,8 @@ web_session_ttl: 720
 dns:
   bind_hosts:
     - 0.0.0.0
-  port: 1745
-  statistics_interval: 7
+  port: 1053
+  statistics_interval: 1
   querylog_enabled: true
   querylog_file_enabled: true
   querylog_interval: 6h
@@ -31,18 +31,13 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-    - 114.114.114.114
-    - tls://dns.alidns.com
-    - https://dns.alidns.com/dns-query
-    - '#127.0.0.1:7874'
+    - 127.0.0.1:53
     - '#211.136.192.6#211.136.192.6是移动dns'
     - '[/dynv6.com/]240c::6666'
     - '[/dns.army/]240c::6666'
     - '[/dynv6.net/]240c::6666'
-    - '[/docker.io/]8.8.8.8'
   upstream_dns_file: ""
   bootstrap_dns:
-    - 192.168.8.1
     - 211.136.192.6
     - 120.196.165.24
     - 223.5.5.5
@@ -72,8 +67,9 @@ dns:
   max_goroutines: 300
   handle_ddr: true
   ipset: []
+  ipset_file: ""
   filtering_enabled: true
-  filters_update_interval: 1
+  filters_update_interval: 24
   parental_enabled: false
   safesearch_enabled: false
   safebrowsing_enabled: false
@@ -87,6 +83,8 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: false
   local_ptr_upstreams: []
+  serve_http3: false
+  use_http3_upstreams: false
 tls:
   enabled: false
   server_name: ""
@@ -97,16 +95,12 @@ tls:
   port_dnscrypt: 0
   dnscrypt_config_file: ""
   allow_unencrypted_doh: false
-  strict_sni_check: false
   certificate_chain: ""
   private_key: ""
   certificate_path: ""
   private_key_path: ""
+  strict_sni_check: false
 filters:
-  - enabled: true
-    url: https://anti-ad.net/adguard.txt
-    name: adguard.txt
-    id: 1
   - enabled: true
     url: https://easylist.to/easylist/fanboy-annoyance.txt
     name: fanboy-annoyance
@@ -116,10 +110,6 @@ filters:
     name: ADgk去手机广告
     id: 1629794207
   - enabled: true
-    url: http://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/mv.txt
-    name: xinggsf-mv
-    id: 1631795392
-  - enabled: true
     url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
     name: cjx82630-cjx-annoyance
     id: 1631795393
@@ -128,10 +118,6 @@ filters:
     name: cjx82630_cjx-ublock爱奇艺
     id: 1638856876
   - enabled: true
-    url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/mv.txt
-    name: github,mv
-    id: 1639944072
-  - enabled: true
     url: http://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
     name: xinggsf-rule
     id: 1639944073
@@ -139,6 +125,14 @@ filters:
     url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/minority-mv.txt
     name: xinggsf-minority（小众）-mv
     id: 1659956219
+  - enabled: true
+    url: https://anti-ad.net/easylist.txt
+    name: 'CHN: anti-AD'
+    id: 1668670533
+  - enabled: false
+    url: https://cdn.jsdelivr.net/gh/badmojr/1Hosts@master/Lite/adblock.txt
+    name: 1Hosts (Lite)
+    id: 1668670922
 whitelist_filters: []
 user_rules:
   - '#只允许例外能使用IPV4'
@@ -168,6 +162,7 @@ user_rules:
   - '@@/edu/$important,dnstype=AAAA'
   - '@@||edu.cn^$important,dnstype=AAAA'
   - '@@||*.army^$important,dnstype=AAAA'
+  - '@@||*.eu.org^$important,dnstype=AAAA'
   - '@@||*.etceye.eu.org^$important,dnstype=AAAA'
   - '@@||*.cnetceye.eu.org^$important,dnstype=AAAA'
   - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
@@ -237,7 +232,7 @@ user_rules:
   - '||hisense.com'
   - /hisense/
   - '####hisens广告和视频'
-  - ""
+  - '||44766.cc'
 dhcp:
   enabled: false
   interface_name: ""
