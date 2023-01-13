@@ -162,7 +162,6 @@ user_rules:
   - '@@/edu/$important,dnstype=AAAA'
   - '@@||edu.cn^$important,dnstype=AAAA'
   - '@@||*.army^$important,dnstype=AAAA'
-  - '@@||*.eu.org^$important,dnstype=AAAA'
   - '@@||*.etceye.eu.org^$important,dnstype=AAAA'
   - '@@||*.cnetceye.eu.org^$important,dnstype=AAAA'
   - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
@@ -233,6 +232,9 @@ user_rules:
   - /hisense/
   - '####hisens广告和视频'
   - '||44766.cc'
+  - '||2mdn.net'
+  - '||doubleclick.net'
+  - ""
 dhcp:
   enabled: false
   interface_name: ""

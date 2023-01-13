@@ -232,6 +232,9 @@ user_rules:
   - /hisense/
   - '####hisens广告和视频'
   - '||44766.cc'
+  - '||2mdn.net'
+  - '||doubleclick.net'
+  - ""
 dhcp:
   enabled: false
   interface_name: ""
