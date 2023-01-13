@@ -7,7 +7,7 @@
 #
 
 
-name: Lienol_newifi_y1s
+name: Y1S
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
       name:
         description: 'build-openwrt'
         required: true
-        default: 'Lienol_newifi_y1s'
+        default: 'Y1S'
 
 
 #编辑任意指定文件触发开始编译
@@ -39,19 +39,19 @@ on:
 env: 
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   SCKEY: ${{ secrets.SCKEY }}
-  GITHUB_RELEASE: https://github.com/cnmoon-n/openwrt-build/releases
+  GITHUB_RELEASE: https://github.com/etc-snail/lean-build/releases
   TZ: Asia/Shanghai
 
 jobs: 
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     name: 编译 ${{matrix.target}}
     strategy:
       fail-fast: false
       matrix:
-        target: [Lienol_newifi_y1s]  #[Lede_x86_64,Lede_redmi_ac2100,Lede_newifi_d2,Lede_nanopi_r2s,Lede_phicomm_k2p,Lienol_x86_64,Lienol_phicomm_k2p,Lienol_phicomm_k3,Project_x86_64,Project_newifi_d2,Project_phicomm_k3,Project_nanopi_r2s]
+        target: [Lede_newifi_y1s]  #[Lede_x86_64,Lede_redmi_ac2100,Lede_newifi_d2,Lede_nanopi_r2s,Lede_phicomm_k2p,Lienol_x86_64,Lienol_phicomm_k2p,Lienol_phicomm_k3,Project_x86_64,Project_newifi_d2,Project_phicomm_k3,Project_nanopi_r2s]
 
     steps:
     - name: 准备结束
@@ -87,9 +87,10 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update -y
-        sudo -E apt-get -qq full-upgrade -y
-        sudo -E apt-get -qq install -y gawk git ccache gettext libssl-dev xsltproc zip git-core wget curl grep
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
@@ -202,14 +203,25 @@ jobs:
         name: OpenWrt_firmware_${{matrix.target}}_${{ env.date }}
         path: ${{ env.FIRMWARE }}
 
-    - name: 上传固件到「WeTransfer」
-      if: steps.organizer.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true'
+    - name: 上传固件到「奶牛快传」和「WeTransfer」
+      if: steps.organizer.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+        echo "::warning file=奶牛快传（${{matrix.target}}）::$(cat cowtransfer.log | grep https)"
         curl -fsSL git.io/file-transfer | sh
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=WeTransfer（${{matrix.target}}）::$(cat wetransfer.log | grep https)"
- 
-
+    
+    - name: 提取发布用的「奶牛快传」跟「WeTransfer」的链接
+      if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
+      run: |
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
+        echo "COWTRANSFER_URL=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV 
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
+        echo "WETRANSFER_URL=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_ENV 
     
     - name: 自动发布固件
       uses: softprops/action-gh-release@v1
@@ -225,6 +237,8 @@ jobs:
             ☆  感谢源码作者无私分享！
             
             🎉 [ ${{ env.WXFB_MESSAGE }} ]固件下载 ✨
+            
+            💐 奶牛快传(国内高速🚀下载)： ${{ env.COWTRANSFER_URL }}
             
             ⛄ WeTransfer(国外高速🚀下载)： ${{ env.WETRANSFER_URL }}
             
@@ -261,6 +275,11 @@ jobs:
               
               发布地址：${{ env.GITHUB_RELEASE }}
               
-
+              
+              奶牛快传：${{ env.COWTRANSFER_URL }}
+              
+              
               WeTransfer：${{ env.WETRANSFER_URL }}
               
+              
+              祝小主人见人爱，花见花开，车见车载，天天好心情🎈！！！
