@@ -31,20 +31,20 @@ on:
 #    - cron: 0 8 */5 * *
 
 
+  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+  SCKEY: ${{ secrets.SCKEY }}
 #点☆Star触发开始编译
   watch:
 #    types: started
 
 
 env: 
-  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-  SCKEY: ${{ secrets.SCKEY }}
   GITHUB_RELEASE: https://github.com/cnmoon-n/openwrt-build/releases
   TZ: Asia/Shanghai
 
 jobs: 
   build:
-    runs-on: Ubuntu-22.10
+    runs-on: ubuntu-22.04.1-LTS
     if: github.event.repository.owner.id == github.event.sender.id
 
     name: 编译 ${{matrix.target}}
