@@ -40,7 +40,5 @@ config interface 'zero'
 	option proto 'none'
 	option ifname 'ztr2qw6fd3'
 
-config interface 'vpn0'
-	option ifname 'tun0'
-	option proto 'none'
+
 

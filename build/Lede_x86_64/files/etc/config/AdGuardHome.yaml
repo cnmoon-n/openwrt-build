@@ -234,6 +234,9 @@ user_rules:
   - '||44766.cc'
   - '||2mdn.net'
   - '||doubleclick.net'
+  - '###woiden.id的广告放行@@||doubleclick.net'
+  - '@@||adservice.google.com^$important'
+  - '@@||pagead2.googlesyndication.com^$important'
   - ""
 dhcp:
   enabled: false
