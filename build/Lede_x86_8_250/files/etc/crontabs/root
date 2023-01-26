@@ -1,5 +1,5 @@
 #0 4 * * * ifup wan &> /dev/null
-0 4 * * * /etc/init.d/firewall restart &> /dev/null
+#0 4 * * * /etc/init.d/firewall restart &> /dev/null
 */3 * * * * sh /etc/config/sh/eye10250.dynv6.net.sh
 #35 0-23/4 * * * sh /etc/config/sh/fq.sh
 0 4 * * 1  sh /etc/config/sh/re.sh
@@ -7,5 +7,6 @@
 31 */3 * * * /usr/bin/getnoddosdeviceprofiles;  if [ $? -gt 0 ]; then service noddos reload; fi
 #0 * * * * /usr/share/AdGuardHome/addhost.sh
 #30 3 * * * /usr/share/AdGuardHome/gfw2adg.sh
-0 5 * * * /usr/share/openclash/openclash_chnroute.sh
-0 5 * * 1 /etc/init.d/openclash restart 2>/dev/null
+#0 5 * * * /usr/share/openclash/openclash_chnroute.sh
+#0 5 * * 1 /etc/init.d/openclash restart 2>/dev/null
+55 */1 * * * /etc/config/sh/hour.sh &> /dev/null    ##每小时需要执行的
