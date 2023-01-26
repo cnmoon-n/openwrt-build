@@ -8,6 +8,7 @@ auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
 language: zh-cn
+theme: auto
 debug_pprof: false
 web_session_ttl: 720
 dns:
@@ -36,6 +37,9 @@ dns:
     - '[/dynv6.com/]240c::6666'
     - '[/dns.army/]240c::6666'
     - '[/dynv6.net/]240c::6666'
+    - '[/jsdelivr.net/]240c::6666'
+    - '[/iqiq.io/]240c::6666'
+    - '[/ghproxy.com/]240c::6666'
   upstream_dns_file: ""
   bootstrap_dns:
     - 211.136.192.6
@@ -105,23 +109,23 @@ filters:
     url: https://easylist.to/easylist/fanboy-annoyance.txt
     name: fanboy-annoyance
     id: 1625119229
-  - enabled: true
+  - enabled: false
     url: https://raw.iqiq.io/banbendalao/ADgk/master/ADgk.txt
     name: ADgk去手机广告
     id: 1629794207
-  - enabled: true
+  - enabled: false
     url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
     name: cjx82630-cjx-annoyance
     id: 1631795393
-  - enabled: true
+  - enabled: false
     url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-ublock.txt
     name: cjx82630_cjx-ublock爱奇艺
     id: 1638856876
-  - enabled: true
+  - enabled: false
     url: http://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
     name: xinggsf-rule
     id: 1639944073
-  - enabled: true
+  - enabled: false
     url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/minority-mv.txt
     name: xinggsf-minority（小众）-mv
     id: 1659956219
@@ -129,9 +133,9 @@ filters:
     url: https://anti-ad.net/easylist.txt
     name: 'CHN: anti-AD'
     id: 1668670533
-  - enabled: false
-    url: https://cdn.jsdelivr.net/gh/badmojr/1Hosts@master/Lite/adblock.txt
-    name: 1Hosts (Lite)
+  - enabled: true
+    url: https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/adguard
+    name: Ad-set-hosts
     id: 1668670922
 whitelist_filters: []
 user_rules:
