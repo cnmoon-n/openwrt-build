@@ -1,14 +1,10 @@
 
 config dnsmasq
 	option domainneeded '1'
-	option boguspriv '1'
-	option filterwin2k '0'
 	option localise_queries '1'
-	option rebind_localhost '1'
 	option local '/lan/'
 	option domain 'lan'
 	option expandhosts '1'
-	option nonegcache '0'
 	option authoritative '1'
 	option readethers '1'
 	option leasefile '/tmp/dhcp.leases'
@@ -53,7 +49,32 @@ config odhcpd 'odhcpd'
 
 config srvhost
 	option srv '_vlmcs._tcp'
-	option target 'OpenWrt'
+	option target 'AX6S-Wx-eycoot_cn'
 	option port '1688'
 	option class '0'
 	option weight '100'
+
+config host
+	option name 'hasense-Lan'
+	option dns '1'
+	option mac '08:ba:5f:ad:8d:db'
+	option ip '192.168.8.218'
+
+config host
+	option name 'pan_jx'
+	option dns '1'
+	option mac '04:4a:6c:a3:6f:f1'
+	option ip '192.168.8.153'
+
+config host
+	option name 'wmc180_ap'
+	option dns '1'
+	option mac 'f4:84:8d:06:6e:14'
+	option ip '192.168.8.137'
+
+config host
+	option name 'pve170'
+	option dns '1'
+	option mac '40:b0:76:47:76:6f'
+	option ip '192.168.8.170'
+
