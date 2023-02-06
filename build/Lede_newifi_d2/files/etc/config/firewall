@@ -1,0 +1,420 @@
+
+config defaults
+	option syn_flood '1'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option fullcone '2'
+	option flow_offloading '0'
+	option flow_offloading_hw '1'
+
+config zone
+	option name 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option network 'lan'
+
+config zone
+	option name 'wan'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+	option network 'modem wan'
+
+config rule
+	option name 'Allow-DHCP-Renew'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option target 'ACCEPT'
+	option family 'ipv4'
+
+config rule
+	option name 'Allow-Ping'
+	option src 'wan'
+	option proto 'icmp'
+	option icmp_type 'echo-request'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-IGMP'
+	option src 'wan'
+	option proto 'igmp'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-DHCPv6'
+	option src 'wan'
+	option proto 'udp'
+	option src_ip 'fc00::/6'
+	option dest_ip 'fc00::/6'
+	option dest_port '546'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-MLD'
+	option src 'wan'
+	option proto 'icmp'
+	option src_ip 'fe80::/10'
+	list icmp_type '130/0'
+	list icmp_type '131/0'
+	list icmp_type '132/0'
+	list icmp_type '143/0'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Input'
+	option src 'wan'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	list icmp_type 'router-solicitation'
+	list icmp_type 'neighbour-solicitation'
+	list icmp_type 'router-advertisement'
+	list icmp_type 'neighbour-advertisement'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Forward'
+	option src 'wan'
+	option dest '*'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-IPSec-ESP'
+	option src 'wan'
+	option dest 'lan'
+	option proto 'esp'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ISAKMP'
+	option src 'wan'
+	option dest 'lan'
+	option dest_port '500'
+	option proto 'udp'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Support-UDP-Traceroute'
+	option src 'wan'
+	option dest_port '33434:33689'
+	option proto 'udp'
+	option family 'ipv4'
+	option target 'REJECT'
+	option enabled '0'
+
+config include
+	option path '/etc/firewall.user'
+
+config include 'miniupnpd'
+	option type 'script'
+	option path '/usr/share/miniupnpd/firewall.include'
+	option family 'any'
+	option reload '1'
+
+config include 'mia'
+	option type 'script'
+	option path '/etc/mia.include'
+	option reload '1'
+
+config include 'openclash'
+	option type 'script'
+	option path '/var/etc/openclash.include'
+	option reload '1'
+
+config include 'softethervpn'
+	option type 'script'
+	option path '/usr/share/softethervpn/firewall.include'
+	option reload '1'
+
+config include 'shadowsocksr'
+	option type 'script'
+	option path '/var/etc/shadowsocksr.include'
+	option reload '1'
+
+config rule 'kms'
+	option name 'kms'
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp'
+	option dest_port '1688'
+
+config rule
+	option proto 'tcp'
+	option src 'wan'
+	option target 'ACCEPT'
+	option family 'ipv6'
+	option name 'lan ssh'
+	option dest 'lan'
+	option dest_port '22'
+
+config rule
+	option proto 'tcp'
+	option dest_port '443'
+	option name 'route'
+	option target 'ACCEPT'
+	option src 'wan'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp udp'
+	option family 'ipv6'
+	option dest 'lan'
+	option name 'lan vpn 3194'
+	option dest_port '3194'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp'
+	option dest_port '5194'
+	option name 'lan vpn 5194'
+	option family 'ipv6'
+	option dest 'lan'
+
+config rule
+	option proto 'tcp'
+	option target 'ACCEPT'
+	option family 'ipv6'
+	option src 'wan'
+	option dest_port '5194'
+	option name 'route 5194'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option dest_port '3194'
+	option family 'ipv6'
+	option proto 'tcp'
+	option name 'route 3194'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option name 'unas-openvpn'
+	option dest 'lan'
+	option dest_port '2194'
+	option family 'ipv6'
+	option proto 'tcp'
+
+config rule
+	option name 'note10 ipv6 ICMP'
+	option proto 'icmp'
+	option src 'lan'
+	option src_mac '88:F8:72:C6:04:AE'
+	option target 'REJECT'
+	option family 'ipv6'
+
+config rule
+	option src 'lan'
+	option dest 'wan'
+	option target 'REJECT'
+	option proto 'all'
+	option name 'hasense-wifi'
+	option src_mac 'D4:B7:61:99:BD:0B'
+
+config rule
+	option src 'lan'
+	option target 'REJECT'
+	option name 'hasense-wifi to route'
+	option proto 'all'
+	option src_mac 'D4:B7:61:99:BD:0B'
+	option enabled '0'
+
+config rule
+	option target 'ACCEPT'
+	option name 'hasense-Lan_1900-2000'
+	option src 'lan'
+	option dest 'wan'
+	option start_time '19:00:00'
+	option stop_time '20:00:00'
+	option family 'ipv4'
+	option proto 'all'
+	option src_mac '08:BA:5F:AD:8D:DB'
+	option enabled '0'
+
+config rule
+	option name 'hasense-Lan'
+	option target 'REJECT'
+	option proto 'all'
+	option src_mac '08:BA:5F:AD:8D:DB'
+	option src 'lan'
+	option dest 'wan'
+	option enabled '0'
+
+config rule
+	option name 'ma_rom'
+	option proto 'all'
+	option src 'lan'
+	option dest 'wan'
+	option target 'REJECT'
+	option family 'ipv6'
+	option src_mac 'BC:25:E0:45:12:D8'
+	option enabled '0'
+
+config rule
+	option target 'ACCEPT'
+	option name 'ma_rom_1900-2359'
+	option proto 'all'
+	option src 'lan'
+	option dest 'wan'
+	option start_time '19:00:00'
+	option stop_time '23:59:00'
+	option src_mac 'BC:25:E0:45:12:D8'
+	option enabled '0'
+
+config rule
+	option target 'ACCEPT'
+	option src 'lan'
+	option dest 'wan'
+	option stop_time '13:59:00'
+	option proto 'all'
+	option src_mac 'BC:25:E0:45:12:D8'
+	option start_time '08:50:00'
+	option name 'ma_rom_0850-1359'
+	option enabled '0'
+
+config rule
+	option proto 'tcp udp'
+	option name 'ma_rom_ipv4 _drop'
+	option family 'ipv4'
+	option src 'lan'
+	option dest 'wan'
+	option target 'REJECT'
+	option src_mac 'BC:25:E0:45:12:D8'
+	option enabled '0'
+
+config rule 'openvpn'
+	option proto 'tcp udp'
+	option name 'JX_PAN'
+	option src 'lan'
+	option src_mac '04:4A:6C:A3:6F:F1'
+	option dest '*'
+	option target 'DROP'
+	option enabled '0'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp'
+	option name 'v2ray9301'
+	option dest_port '9301'
+
+config rule
+	option target 'ACCEPT'
+	option src 'wan'
+	option proto 'tcp'
+	option dest_port '9001'
+	option name 'v2ray9001'
+
+config defaults
+	option syn_flood '1'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option flow_offloading_hw '0'
+	option drop_invalid '1'
+	option fullcone '2'
+	option flow_offloading '1'
+
+
+
+config zone
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option name 'vpn_server'
+	option forward 'ACCEPT'
+	option masq '1'
+	option network 'vpn_server'
+
+config forwarding
+	option dest 'vpn'
+	option src 'lan'
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn'
+
+config forwarding
+	option dest 'lan'
+	option src 'wan'
+
+config forwarding
+	option dest 'wan'
+	option src 'lan'
+
+config forwarding
+	option dest 'wan'
+	option src 'vpn'
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'wan'
+	option src 'vpn_server'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'lan'
+
+config forwarding
+	option dest 'vpn_server'
+	option src 'vpn'
+
+config zone 'vpn'
+	option name 'vpn'
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option output 'ACCEPT'
+	option masq '1'
+	option network 'vpn0'
+
+config forwarding 'vpntowan'
+	option src 'vpn'
+	option dest 'wan'
+
+config forwarding 'vpntolan'
+	option src 'vpn'
+	option dest 'lan'
+
+config forwarding 'lantovpn'
+	option src 'lan'
+	option dest 'vpn'
+
+config include 'AdGuardHome'
+	option type 'script'
+	option path '/usr/share/AdGuardHome/firewall.start'
+	option reload '1'
+

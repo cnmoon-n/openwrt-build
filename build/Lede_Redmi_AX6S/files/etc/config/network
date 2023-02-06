@@ -48,17 +48,6 @@ config interface 'modem'
 	option gateway '192.168.1.1'
 	option ifname 'wan'
 
-config route
-	option interface 'lan'
-	option target '10.147.18.0'
-	option netmask '255.255.255.0'
-	option gateway '192.168.8.250'
-
-config route
-	option interface 'lan'
-	option netmask '255.255.255.0'
-	option gateway '192.168.8.254'
-	option target '11.9.0.0'
 
 config interface 'vpn0'
 	option ifname 'tun0'
