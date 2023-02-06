@@ -36,9 +36,3 @@ config interface 'vpn'
 
 config route
 
-config interface 'zero'
-	option proto 'none'
-	option ifname 'ztr2qw6fd3'
-
-
-

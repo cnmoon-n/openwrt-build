@@ -1,6 +1,5 @@
 bind_host: 0.0.0.0
 bind_port: 3000
-beta_bind_port: 0
 users:
   - name: admin
     password: $2y$10$0dTPUyZHkJ52mx0UtiF/8OLnj/DGpwntN36k6ojOGr.KWu2Tf/Agu
@@ -32,14 +31,14 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
+    - '#192.168.8.1'
+    - '#223.5.5.5'
+    - '#240c::6666'
     - 127.0.0.1:53
     - '#211.136.192.6#211.136.192.6是移动dns'
     - '[/dynv6.com/]240c::6666'
     - '[/dns.army/]240c::6666'
     - '[/dynv6.net/]240c::6666'
-    - '[/jsdelivr.net/]240c::6666'
-    - '[/iqiq.io/]240c::6666'
-    - '[/ghproxy.com/]240c::6666'
   upstream_dns_file: ""
   bootstrap_dns:
     - 211.136.192.6
@@ -87,6 +86,8 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: false
   local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
   serve_http3: false
   use_http3_upstreams: false
 tls:
@@ -105,7 +106,7 @@ tls:
   private_key_path: ""
   strict_sni_check: false
 filters:
-  - enabled: true
+  - enabled: false
     url: https://easylist.to/easylist/fanboy-annoyance.txt
     name: fanboy-annoyance
     id: 1625119229
@@ -113,30 +114,38 @@ filters:
     url: https://raw.iqiq.io/banbendalao/ADgk/master/ADgk.txt
     name: ADgk去手机广告
     id: 1629794207
-  - enabled: false
+  - enabled: true
     url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
     name: cjx82630-cjx-annoyance
     id: 1631795393
-  - enabled: false
+  - enabled: true
     url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-ublock.txt
     name: cjx82630_cjx-ublock爱奇艺
     id: 1638856876
-  - enabled: false
+  - enabled: true
     url: http://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
     name: xinggsf-rule
     id: 1639944073
-  - enabled: false
+  - enabled: true
     url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/minority-mv.txt
     name: xinggsf-minority（小众）-mv
     id: 1659956219
-  - enabled: true
+  - enabled: false
     url: https://anti-ad.net/easylist.txt
     name: 'CHN: anti-AD'
     id: 1668670533
   - enabled: true
-    url: https://raw.githubusercontent.com/rentianyu/Ad-set-hosts/master/adguard
-    name: Ad-set-hosts
+    url: https://raw.githubusercontent.com/8680/GOODBYEADS/master/rules.txt
+    name: GOODBYEADS
     id: 1668670922
+  - enabled: true
+    url: https://file-git.trli.club/ad-hosts/ad-youtube/ad-youtube-adguardhome.txt
+    name: youtube-adguardhome
+    id: 1675406969
+  - enabled: true
+    url: https://raw.githubusercontent.com/8680/GOODBYEADS/master/allow.txt
+    name: GOODBYEADS allow
+    id: 1675406970
 whitelist_filters: []
 user_rules:
   - '#只允许例外能使用IPV4'
@@ -241,6 +250,12 @@ user_rules:
   - '###woiden.id的广告放行@@||doubleclick.net'
   - '@@||adservice.google.com^$important'
   - '@@||pagead2.googlesyndication.com^$important'
+  - '||grelighting.cn^$important'
+  - '@@||t.grelighting.cn^$important'
+  - '#@@||www.googletagmanager.com^$important'
+  - '@@||push.kwd.inkuai.com^$important'
+  - '@@||api2.e.kuaishou.com^$important'
+  - '@@||hovv.yilanvaas.com^$important'
   - ""
 dhcp:
   enabled: false
