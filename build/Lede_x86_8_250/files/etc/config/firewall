@@ -34,29 +34,6 @@ config forwarding
 	option dest 'vpn1'
 	option src 'lan'
 
-config zone
-	option input 'ACCEPT'
-	option forward 'ACCEPT'
-	option output 'ACCEPT'
-	option name 'zero'
-	option network 'zero'
-
-config forwarding
-	option dest 'lan'
-	option src 'zero'
-
-config forwarding
-	option dest 'vpn1'
-	option src 'zero'
-
-config forwarding
-	option dest 'zero'
-	option src 'lan'
-
-config forwarding
-	option dest 'zero'
-	option src 'vpn1'
-
 config include 'zerotier'
 	option type 'script'
 	option path '/etc/zerotier.start'
@@ -78,20 +55,12 @@ config forwarding
 	option src 'vpn0'
 
 config forwarding
-	option dest 'zero'
-	option src 'vpn0'
-
-config forwarding
 	option dest 'vpn0'
 	option src 'lan'
 
 config forwarding
 	option dest 'vpn0'
 	option src 'vpn1'
-
-config forwarding
-	option dest 'vpn0'
-	option src 'zero'
 
 config rule
 	option enabled '1'
@@ -103,10 +72,5 @@ config rule
 config include 'openclash'
 	option type 'script'
 	option path '/var/etc/openclash.include'
-	option reload '1'
-
-config include 'AdGuardHome'
-	option type 'script'
-	option path '/usr/share/AdGuardHome/firewall.start'
 	option reload '1'
 
