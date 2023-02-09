@@ -90,6 +90,7 @@ config openclash 'config'
 	option github_address_mod 'https://cdn.jsdelivr.net/'
 	option append_wan_dns '1'
 	option en_mode 'fake-ip-mix'
+	option restart '0'
 	option config_reload '1'
 
 config dns_servers
