@@ -4,5 +4,5 @@ config watchcat
 	option mode 'ping'
 	option pinghosts '223.5.5.5'
 	option pingperiod '5'
-	option period '2m'
+	option period '0'
 
