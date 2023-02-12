@@ -357,6 +357,15 @@ config include 'miniupnpd'
 config include
 	option path '/etc/firewall.user'
 
+config rule
+	option enabled '1'
+	option target 'ACCEPT'
+	option proto 'tcp udp'
+	option name 'my_pro8'
+	option src 'lan'
+	option src_mac 'D8:A4:91:51:D4:8F'
+	option dest '*'
+
 config include 'AdGuardHome'
 	option type 'script'
 	option path '/usr/share/AdGuardHome/firewall.start'

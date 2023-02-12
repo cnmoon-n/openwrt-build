@@ -20,7 +20,6 @@ config dnsmasq
 	option localservice '0'
 	option rebind_protection '0'
 	option localuse '1'
-	option noresolv '0'
 
 config dhcp 'lan'
 	option interface 'lan'
@@ -79,32 +78,8 @@ config host
 	option ip '192.168.8.170'
 
 config host
-	option name 'ma-rom'
+	option name 'My_pro8'
 	option dns '1'
-	option mac 'bc:25:e0:45:12:d8'
-	option ip '192.168.8.194'
-
-config host
-	option dns '1'
-	option mac 'D4:B7:61:99:BD:0B'
-	option ip '192.168.8.138'
-	option name 'hasens-wifi'
-
-config host
-	option dns '1'
-	option mac '08:BA:5F:AD:8D:DB'
-	option ip '192.168.8.201'
-	option name 'hasens-lan'
-
-config host
-	option name 'HQ5C'
-	option dns '1'
-	option mac '60:7d:09:20:64:06'
-	option ip '192.168.8.130'
-
-config host
-	option dns '1'
-	option mac '6c:2d:24:a6:ee:38'
-	option ip '192.168.8.177'
-	option name 'jx_watch'
+	option mac 'd8:a4:91:51:d4:8f'
+	option ip '192.168.8.235'
 

@@ -1,20 +1,20 @@
 bind_host: 0.0.0.0
 bind_port: 3000
-beta_bind_port: 0
 users:
-- name: admin
-  password: $2y$10$0dTPUyZHkJ52mx0UtiF/8OLnj/DGpwntN36k6ojOGr.KWu2Tf/Agu
+  - name: admin
+    password: $2y$10$0dTPUyZHkJ52mx0UtiF/8OLnj/DGpwntN36k6ojOGr.KWu2Tf/Agu
 auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
 language: zh-cn
+theme: auto
 debug_pprof: false
 web_session_ttl: 720
 dns:
   bind_hosts:
-  - 0.0.0.0
-  port: 1745
-  statistics_interval: 7
+    - 0.0.0.0
+  port: 1053
+  statistics_interval: 1
   querylog_enabled: true
   querylog_file_enabled: true
   querylog_interval: 6h
@@ -31,37 +31,36 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - tls://dns.pub
-  - tls://dns.alidns.com
-  - https://dns.alidns.com/dns-query
-  - '#127.0.0.1:7874'
-  - '#211.136.192.6#211.136.192.6是移动dns'
-  - '[/dynv6.com/]240c::6666'
-  - '[/dns.army/]240c::6666'
-  - '[/dynv6.net/]240c::6666'
+    - '192.168.8.1'
+    - '#223.5.5.5'
+    - '240c::6666'
+    - '127.0.0.1:53'
+    - '#211.136.192.6#211.136.192.6是移动dns'
+    - '[/dynv6.com/]240c::6666'
+    - '[/dns.army/]240c::6666'
+    - '[/dynv6.net/]240c::6666'
   upstream_dns_file: ""
   bootstrap_dns:
-  - 192.168.123.1
-  - 211.136.192.6
-  - 120.196.165.24
-  - 223.5.5.5
-  - 240c::6666
-  - 2409:8057:2000:6::8
-  - 2409:8057:2000:2::8
+    - 211.136.192.6
+    - 120.196.165.24
+    - 223.5.5.5
+    - 240c::6666
+    - 2409:8062:2000:1::1
+    - 2409:8062:2000:1::2
   all_servers: false
   fastest_addr: false
   fastest_timeout: 1s
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
-  - version.bind
-  - id.server
-  - hostname.bind
+    - version.bind
+    - id.server
+    - hostname.bind
   trusted_proxies:
-  - 127.0.0.0/8
-  - ::1/128
+    - 127.0.0.0/8
+    - ::1/128
   cache_size: 41943040
-  cache_ttl_min: 10
+  cache_ttl_min: 60
   cache_ttl_max: 86400
   cache_optimistic: true
   bogus_nxdomain: []
@@ -71,8 +70,9 @@ dns:
   max_goroutines: 300
   handle_ddr: true
   ipset: []
+  ipset_file: ""
   filtering_enabled: true
-  filters_update_interval: 1
+  filters_update_interval: 24
   parental_enabled: false
   safesearch_enabled: false
   safebrowsing_enabled: false
@@ -86,6 +86,10 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: false
   local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
+  serve_http3: false
+  use_http3_upstreams: false
 tls:
   enabled: false
   server_name: ""
@@ -96,149 +100,163 @@ tls:
   port_dnscrypt: 0
   dnscrypt_config_file: ""
   allow_unencrypted_doh: false
-  strict_sni_check: false
   certificate_chain: ""
   private_key: ""
   certificate_path: ""
   private_key_path: ""
+  strict_sni_check: false
 filters:
-- enabled: false
-  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-  name: AdGuard DNS filter
-  id: 1
-- enabled: true
-  url: https://anti-ad.net/easylist.txt
-  name: 'CHN: anti-AD'
-  id: 1622255747
-- enabled: true
-  url: https://raw.staticdn.net/hoshsadiq/adblock-nocoin-list/master/hosts.txt
-  name: NoCoin Filter List
-  id: 1622255748
-- enabled: true
-  url: https://adaway.org/hosts.txt
-  name: AdAway Default Blocklist
-  id: 1622255749
-- enabled: true
-  url: https://someonewhocares.org/hosts/zero/hosts
-  name: Dan Pollock's List
-  id: 1622255750
-- enabled: true
-  url: https://raw.staticdn.net/DandelionSprout/adfilt/master/GameConsoleAdblockList.txt
-  name: Game Console Adblock List
-  id: 1622255751
-- enabled: true
-  url: https://raw.staticdn.net/Perflyst/PiHoleBlocklist/master/SmartTV-AGH.txt
-  name: Perflyst and Dandelion Sprout's Smart-TV Blocklist
-  id: 1622255752
-- enabled: true
-  url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=1&mimetype=plaintext
-  name: Peter Lowe's List
-  id: 1622255753
-- enabled: true
-  url: https://raw.staticdn.net/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt
-  name: WindowsSpyBlocker - Hosts spy rules
-  id: 1622255754
-- enabled: false
-  url: https://cdn.jsdelivr.net/gh/privacy-protection-tools/anti-AD@master/adblock-for-dnsmasq.conf
-  name: adblock-for-dnsmasq.conf
-  id: 1625119224
-- enabled: true
-  url: https://gitee.com/halflife/list/raw/master/ad.txt
-  name: halflife-ad.txt
-  id: 1625119229
-- enabled: true
-  url: https://raw.staticdn.net/banbendalao/ADgk/master/ADgk.txt
-  name: ADgk去手机广告
-  id: 1629794207
-- enabled: true
-  url: https://gitee.com/xinggsf/Adblock-Rule/raw/master/mv.txt
-  name: xinggsf-mv
-  id: 1631795392
-- enabled: true
-  url: https://gitee.com/cjx82630/cjxlist/raw/master/cjx-ublock.txt
-  name: cjx82630-爱奇艺
-  id: 1631795393
-- enabled: false
-  url: https://raw.staticdn.net/rentianyu/Ad-set-hosts/master/adguard
-  name: zonghe
-  id: 1638856876
-- enabled: true
-  url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/mv.txt
-  name: github,mv
-  id: 1639944072
-- enabled: true
-  url: https://raw.staticdn.net/xinggsf/Adblock-Plus-Rule/master/rule.txt
-  name: xinggsf-rule
-  id: 1639944073
-- enabled: true
-  url: https://raw.staticdn.net/cjx82630/cjxlist/master/cjx-annoyance.txt
-  name: cjx-annoyance
-  id: 1639944074
+  - enabled: false
+    url: https://easylist.to/easylist/fanboy-annoyance.txt
+    name: fanboy-annoyance
+    id: 1625119229
+  - enabled: false
+    url: https://raw.iqiq.io/banbendalao/ADgk/master/ADgk.txt
+    name: ADgk去手机广告
+    id: 1629794207
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
+    name: cjx82630-cjx-annoyance
+    id: 1631795393
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-ublock.txt
+    name: cjx82630_cjx-ublock爱奇艺
+    id: 1638856876
+  - enabled: true
+    url: http://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
+    name: xinggsf-rule
+    id: 1639944073
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/minority-mv.txt
+    name: xinggsf-minority（小众）-mv
+    id: 1659956219
+  - enabled: false
+    url: https://anti-ad.net/easylist.txt
+    name: 'CHN: anti-AD'
+    id: 1668670533
+  - enabled: true
+    url: https://raw.githubusercontent.com/8680/GOODBYEADS/master/rules.txt
+    name: GOODBYEADS
+    id: 1668670922
+  - enabled: true
+    url: https://file-git.trli.club/ad-hosts/ad-youtube/ad-youtube-adguardhome.txt
+    name: youtube-adguardhome
+    id: 1675406969
+  - enabled: true
+    url: https://raw.githubusercontent.com/8680/GOODBYEADS/master/allow.txt
+    name: GOODBYEADS allow
+    id: 1675406970
 whitelist_filters: []
 user_rules:
-- '#去youtube广告'
-- /googleads.$~script,domain=~googleads.github.io
-- /pagead/lvz?
-- '||google.com/pagead/'
-- '||static.doubleclick.net^$domain=youtube.com'
-- '||youtube.com/get_midroll_'
-- '#去youtube广告'
-- '#只允许例外能使用IPV4'
-- '@@||taobao.com^$important,dnstype=A'
-- '@@||nimg.ws.126.net/^$important,dnstype=A'
-- '@@||3g.163.com/^$important,dnstype=A'
-- '@@||jd.com^$important,dnstype=A'
-- '@@||flyme.cn$important,dnstype=A'
-- '@@||meizu.com^$important,dnstype=A'
-- '@@||wl.jd.com^$important,dnstype=A'
-- '@@||flydigi.com^$important,dnstype=A'
-- '@@||pv.sohu.com^$important,dnstype=A'
-- '@@||track.sohu.com^$important,dnstype=A'
-- '@@||d.ifengimg.com^$important,dnstype=A'
-- '@@||phoenixos.com^$important,dnstype=A'
-- '@@||x0.ifengimg.com^$important,dnstype=A'
-- '@@||etl-xlmc-ssl.xunlei.com^$important'
-- '@@||api-shoulei-ssl.xunlei.com^$important'
-- '#@@||cpro.baidustatic.com^$important,dnstype=A'
-- '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
-- '||*.*^$dnstype=AAAA'
-- '@@||*.dynv6.net^$important,dnstype=AAAA'
-- '@@/edu/$important,dnstype=AAAA'
-- '@@||*.edu^$important,dnstype=AAAA'
-- '@@||*.army^$important,dnstype=AAAA'
-- '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
-- '#淘宝货物展示相关。'
-- '@@||cart.tmall.com^$important,dnstype=A'
-- '@@||pass.tmall.com^$important,dnstype=A'
-- '@@||ws.mmstat.com^$important,dnstype=A'
-- '@@||x.alicdn.com^$important,dnstype=A'
-- '#淘宝货物展示相关。'
-- '@@||applog.uc.cn^$important #mayi庄园'
-- '@@||www.xvideos.com^$important,dnstype=A'
-- '@@||*xvideos*^$important,dnstype=A'
-- '@@||g.163.com^$important,dnstype=A'
-- '@@||videoimg.ws.126.net^$important,dnstype=A'
-- '@@||nimg.ws.126.net^$important,dnstype=A'
-- '@@||open-image.ws.126.net^$important,dnstype=A'
-- '@@||live163.ws.126.net^$important,dnstype=A'
-- '##123.2 123.254取消Dns限制'
-- '@@||*^$client=''192.168.123.2'''
-- '@@||*^$client=''192.168.123.254'''
-- '@@||*^$client=''192.168.123.250'''
-- '##123.2 123.254取消Dns限制'
-- '##themoviedb.org指定DNS解析。'
-- '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.226.237.39'
-- '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.113'
-- '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.43'
-- '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.13'
-- '##themoviedb.org指定DNS解析。'
-- '#||dldir1v6.qq.com^$important'
-- '#||wx.qlogo.cn^$important'
-- '#||findercdn.video.qq.com^$important'
-- '#||dldir1.qq.com^$important'
-- '#||cgicol.amap.com^$important'
-- '#||*.video.qq.com^$important'
-- ""
+  - '#只允许例外能使用IPV4'
+  - '@@||taobao.com^$important,dnstype=A'
+  - '@@||nimg.ws.126.net/^$important,dnstype=A'
+  - '@@||3g.163.com/^$important,dnstype=A'
+  - '@@||jd.com^$important,dnstype=A'
+  - '@@||flyme.cn$important,dnstype=A'
+  - '@@||meizu.com^$important,dnstype=A'
+  - '@@||wl.jd.com^$important,dnstype=A'
+  - '@@||flydigi.com^$important,dnstype=A'
+  - '@@||pv.sohu.com^$important,dnstype=A'
+  - '@@||track.sohu.com^$important,dnstype=A'
+  - '@@||d.ifengimg.com^$important,dnstype=A'
+  - '@@||phoenixos.com^$important,dnstype=A'
+  - '@@||x0.ifengimg.com^$important,dnstype=A'
+  - '@@||etl-xlmc-ssl.xunlei.com^$important'
+  - '@@||api-shoulei-ssl.xunlei.com^$important'
+  - '#@@||cpro.baidustatic.com^$important,dnstype=A'
+  - '#只允许例外能使用IPV4'
+  - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
+  - '||*.*^$dnstype=AAAA'
+  - '@@||*.*^$important,dnstype=AAAA,client=''192.168.8.250'''
+  - '@@||www.163.com^$important,dnstype=AAAA'
+  - '@@||dynv6.com^$important,dnstype=AAAA'
+  - '@@||dynv6.net^$important,dnstype=AAAA'
+  - '@@/edu/$important,dnstype=AAAA'
+  - '@@||edu.cn^$important,dnstype=AAAA'
+  - '@@||*.army^$important,dnstype=AAAA'
+  - '@@||*.etceye.eu.org^$important,dnstype=AAAA'
+  - '@@||*.cnetceye.eu.org^$important,dnstype=AAAA'
+  - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
+  - '#####限制IPV6地址访问'
+  - '#||*^$client=2409::1/16'
+  - '#||*^$client=fe80::34a0/16'
+  - '#||*^$client=2409::f0a1/16'
+  - '#@@||*^$important,client=2409::8991/16'
+  - '@@||dynv6.com^$important,client=2409::1/16'
+  - '@@||dynv6.net^$important,client=2409::1/16'
+  - '@@||dns.army^$important,client=2409::1/16'
+  - '@@||edu.cn^$important,client=2409::1/16'
+  - '@@||www.163.com^$important,client=2409::1/16'
+  - '#####限制IPV6地址访问'
+  - '#淘宝货物展示相关。'
+  - '@@||cart.tmall.com^$important,dnstype=A'
+  - '@@||pass.tmall.com^$important,dnstype=A'
+  - '@@||ws.mmstat.com^$important,dnstype=A'
+  - '@@||x.alicdn.com^$important,dnstype=A'
+  - '#淘宝货物展示相关。'
+  - '@@||applog.uc.cn^$important #mayi庄园'
+  - '@@||www.xvideos.com^$important,dnstype=A'
+  - '@@||*xvideos*^$important,dnstype=A'
+  - '@@||g.163.com^$important,dnstype=A'
+  - '@@||videoimg.ws.126.net^$important,dnstype=A'
+  - '@@||nimg.ws.126.net^$important,dnstype=A'
+  - '@@||open-image.ws.126.net^$important,dnstype=A'
+  - '@@||live163.ws.126.net^$important,dnstype=A'
+  - '@@||music.163.com^$important'
+  - '#@@||*.netease.com^$important'
+  - '||vod.126.net^$dnsrewrite=NOERROR;A;0.0.0.0  ###网易视频，包括网易云'
+  - '##8.2 8.254取消Dns限制'
+  - '#@@||*^$client=''192.168.8.2'''
+  - '#@@||*^$client=''192.168.8.200'''
+  - '#@@||*^$client=''192.168.8.250'''
+  - '####迅雷远程下载###'
+  - '@@||libtorrent.org^$client=192.168.8.254'
+  - '@@||lixian.xunlei.com^$client=192.168.8.254'
+  - '@@||shub.sandai.net^$client=192.168.8.254'
+  - '@@||wap.sandai.net^$client=192.168.8.254'
+  - '@@||analysis-acc-ssl.xunlei.com^$client=192.168.8.254'
+  - '@@||speed.auth.vip.xunlei.com^$client=192.168.8.254'
+  - '@@||team.speed.cdn.vip.xunlei.com^$client=192.168.8.254'
+  - '####迅雷远程下载###'
+  - '#8.2 8.254取消Dns限制'
+  - '##themoviedb.org指定DNS解析。'
+  - '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.226.237.39'
+  - '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.113'
+  - '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.43'
+  - '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.13'
+  - '##themoviedb.org指定DNS解析。'
+  - '##百度翻译视频指定DNS解析。'
+  - '||fanyiapp.cdn.bcebos.com^$dnsrewrite=NOERROR;A;0.0.0.0'
+  - '||*^$client=192.168.8.136'
+  - '@@||mime.baidu.com^$important,client=192.168.8.136'
+  - '@@||fanyi-app.baidu.com^$important,client=192.168.8.136'
+  - '#fanyi-app.baidu.com是发音的，指定了dns就不能发音了'
+  - '##快手'
+  - '@@||ali.static.yximgs.com^$important'
+  - '@@||tracker.pcdn.yximgs.com^$important'
+  - '##快手'
+  - '##sina.cn'
+  - '@@||mixer.sina.cn^$important'
+  - '@@||gk.sina.cn^$important'
+  - '##sina.cn'
+  - '####hisens广告和视频'
+  - '||hisense.com'
+  - /hisense/
+  - '####hisens广告和视频'
+  - '||44766.cc'
+  - '||2mdn.net'
+  - '||doubleclick.net'
+  - '###woiden.id的广告放行@@||doubleclick.net'
+  - '@@||adservice.google.com^$important'
+  - '@@||pagead2.googlesyndication.com^$important'
+  - '||grelighting.cn^$important'
+  - '@@||t.grelighting.cn^$important'
+  - '#@@||www.googletagmanager.com^$important'
+  - '@@||push.kwd.inkuai.com^$important'
+  - '@@||api2.e.kuaishou.com^$important'
+  - '@@||hovv.yilanvaas.com^$important'
+  - ""
 dhcp:
   enabled: false
   interface_name: ""
@@ -264,12 +282,12 @@ clients:
     dhcp: true
     hosts: true
   persistent: []
-log_compress: false
-log_localtime: false
+log_file: ""
 log_max_backups: 0
 log_max_size: 100
 log_max_age: 3
-log_file: ""
+log_compress: false
+log_localtime: false
 verbose: false
 os:
   group: ""
