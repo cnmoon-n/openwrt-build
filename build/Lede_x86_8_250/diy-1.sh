@@ -11,10 +11,11 @@
 
 # 使用源码自带passwall等出国软件
 #echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
-echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
+#echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
 #echo src-git OpenAppFilter https://github.com/destan19/OpenAppFilter.git OpenAppFilter >> feeds.conf.default
 #echo src-git opentopd  https://github.com/281677160/AdGuardHome.git  >> feeds.conf.default
-echo src-git opentopd  https://github.com/XiaoBinin/luci-app-adguardhome.git >> feeds.conf.default
+#echo src-git opentopd  https://github.com/XiaoBinin/luci-app-adguardhome.git >> feeds.conf.default
+echo src-git liuran001_packages https://github.com/liuran001/openwrt-packages.git >> feeds.conf.default
 #echo 'src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git' >>feeds.conf.default
 #echo 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages' >>feeds.conf.default
 
