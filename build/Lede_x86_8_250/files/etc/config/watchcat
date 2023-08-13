@@ -1,8 +1,0 @@
-
-config watchcat
-	option forcedelay '30'
-	option mode 'ping'
-	option pinghosts '223.5.5.5'
-	option pingperiod '5'
-	option period '0'
-
