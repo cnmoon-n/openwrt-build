@@ -34,5 +34,4 @@ config interface 'vpn'
 	option proto 'none'
 	option ifname 'tun0'
 
-config route
 
