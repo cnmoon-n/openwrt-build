@@ -1,0 +1,76 @@
+
+config defaults
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option flow_offloading_hw '0'
+	option syn_flood '1'
+	option fullcone '0'
+	option flow_offloading '1'
+
+config zone
+	option name 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option masq '1'
+	option network 'lan lan_v6'
+
+config include
+	option path '/etc/firewall.user'
+
+config zone
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option output 'ACCEPT'
+	option name 'vpn1'
+	option network 'VPN_SERVER vpn1'
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn1'
+
+config forwarding
+	option dest 'vpn1'
+	option src 'lan'
+
+config include 'zerotier'
+	option type 'script'
+	option path '/etc/zerotier.start'
+	option reload '1'
+
+config zone
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option output 'ACCEPT'
+	option name 'vpn0'
+	option network 'vpn0 vpn'
+
+config forwarding
+	option dest 'lan'
+	option src 'vpn0'
+
+config forwarding
+	option dest 'vpn1'
+	option src 'vpn0'
+
+config forwarding
+	option dest 'vpn0'
+	option src 'lan'
+
+config forwarding
+	option dest 'vpn0'
+	option src 'vpn1'
+
+config rule
+	option enabled '1'
+	option target 'ACCEPT'
+	option src 'lan'
+	option proto 'all'
+	option name 'openvpn 3194,5194'
+
+config include 'openclash'
+	option type 'script'
+	option path '/var/etc/openclash.include'
+	option reload '1'
+
