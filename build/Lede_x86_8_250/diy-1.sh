@@ -8,15 +8,27 @@
 # 软件包地址：https://github.com/281677160/openwrt-package
 # 拉取插件请看《各种命令的简单介绍》第4条、第5条说明,不管大神还是新手请认真的看看,再次强调请不要一下子就拉取别人一堆插件的插件包,容易造成编译错误的
 #
+#克隆的源码放在small文件夹
+mkdir package/small
+pushd package/small
 
+#克隆源码
+#adguardhome
+git clone -b main --depth 1 https://github.com/XiaoBinin/luci-app-adguardhome.git
+#passwall2
+#git clone -b main --depth 1 https://github.com/xiaorouji/openwrt-passwall2.git
+#mosdns
+git clone -b v5 --depth 1 https://github.com/sbwml/luci-app-mosdns.git
+#lucky
+git clone -b main --depth 1 https://github.com/sirpdboy/luci-app-lucky.git
 # 使用源码自带passwall等出国软件
 #echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
 #echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
 #echo src-git OpenAppFilter https://github.com/destan19/OpenAppFilter.git OpenAppFilter >> feeds.conf.default
 #echo src-git opentopd  https://github.com/281677160/AdGuardHome.git  >> feeds.conf.default
 #echo src-git opentopd  https://github.com/XiaoBinin/luci-app-adguardhome.git >> feeds.conf.default
-echo src-git kenzok8_packages https://github.com/kenzok8/openwrt-packages.git >> feeds.conf.default
-echo src-git kenzok8_small https://github.com/kenzok8/small.git >> feeds.conf.default
+
+
 #echo 'src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git' >>feeds.conf.default
 #echo 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages' >>feeds.conf.default
 
