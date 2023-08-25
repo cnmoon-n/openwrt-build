@@ -1,9 +1,0 @@
-
-#*/1 * * * * sh /etc/config/sh/ipv6ping.sh &> /dev/null
-#0 */2 * * * sh /etc/config/sh/crontab.sh &> /dev/null
-0 4 * * * /etc/init.d/firewall restart &> /dev/null
-0 4 * * 4 sh /etc/config/sh/re.sh &> /dev/null
-*/3 * * * * sh /etc/config/sh/dynv6.sh
-
-
-#30 3 * * * /usr/share/AdGuardHome/update_core.sh 2>&1

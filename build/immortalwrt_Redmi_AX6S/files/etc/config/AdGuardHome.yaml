@@ -1,0 +1,449 @@
+http:
+  address: 0.0.0.0:3000
+  session_ttl: 720h
+users:
+  - name: admin
+    password: $2a$10$uEHh398.RAzx04A977.r3eOgT4sU3gOBSp9MTSgYOhmRVX9wP1GLy
+auth_attempts: 5
+block_auth_min: 15
+http_proxy: ""
+language: zh-cn
+theme: auto
+debug_pprof: false
+dns:
+  bind_hosts:
+    - 0.0.0.0
+  port: 5553
+  anonymize_client_ip: false
+  protection_enabled: true
+  blocking_mode: default
+  blocking_ipv4: ""
+  blocking_ipv6: ""
+  blocked_response_ttl: 10
+  protection_disabled_until: null
+  parental_block_host: family-block.dns.adguard.com
+  safebrowsing_block_host: standard-block.dns.adguard.com
+  ratelimit: 0
+  ratelimit_whitelist: []
+  refuse_any: true
+  upstream_dns:
+    - 1.1.1.1
+    - 223.5.5.5
+    - 122.112.208.1
+    - 139.9.23.90
+  upstream_dns_file: ""
+  bootstrap_dns:
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.8.8
+  all_servers: false
+  fastest_addr: false
+  fastest_timeout: 1s
+  allowed_clients: []
+  disallowed_clients: []
+  blocked_hosts:
+    - version.bind
+    - id.server
+    - hostname.bind
+  trusted_proxies:
+    - 127.0.0.0/8
+    - ::1/128
+  cache_size: 41943040
+  cache_ttl_min: 60
+  cache_ttl_max: 86400
+  cache_optimistic: false
+  bogus_nxdomain: []
+  aaaa_disabled: false
+  enable_dnssec: true
+  edns_client_subnet:
+    custom_ip: ""
+    enabled: true
+    use_custom: false
+  max_goroutines: 300
+  handle_ddr: true
+  ipset: []
+  ipset_file: ""
+  bootstrap_prefer_ipv6: false
+  filtering_enabled: true
+  filters_update_interval: 12
+  parental_enabled: false
+  safebrowsing_enabled: false
+  safebrowsing_cache_size: 1048576
+  safesearch_cache_size: 1048576
+  parental_cache_size: 1048576
+  cache_time: 30
+  safe_search:
+    enabled: false
+    bing: true
+    duckduckgo: true
+    google: true
+    pixabay: true
+    yandex: true
+    youtube: true
+  rewrites: []
+  blocked_services:
+    schedule:
+      time_zone: UTC
+    ids: []
+  upstream_timeout: 10s
+  private_networks: []
+  use_private_ptr_resolvers: false
+  local_ptr_upstreams: []
+  use_dns64: false
+  dns64_prefixes: []
+  serve_http3: false
+  use_http3_upstreams: false
+tls:
+  enabled: true
+  server_name: dns.cnetceye.eu.org
+  force_https: true
+  port_https: 443
+  port_dns_over_tls: 853
+  port_dns_over_quic: 784
+  port_dnscrypt: 0
+  dnscrypt_config_file: ""
+  allow_unencrypted_doh: false
+  certificate_chain: |-
+    -----BEGIN CERTIFICATE-----
+    MIIGbzCCBNegAwIBAgIRAOg57CjDSv6lhFONa5IavMgwDQYJKoZIhvcNAQEMBQAw
+    WTELMAkGA1UEBhMCQ04xJTAjBgNVBAoTHFRydXN0QXNpYSBUZWNobm9sb2dpZXMs
+    IEluYy4xIzAhBgNVBAMTGlRydXN0QXNpYSBSU0EgRFYgVExTIENBIEcyMB4XDTIz
+    MDMwMjAwMDAwMFoXDTI0MDMwMTIzNTk1OVowHjEcMBoGA1UEAxMTZG5zLmNuZXRj
+    ZXllLmV1Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKiFWYLs
+    fd6tnA5oD6L6P9gRiGPtf9f7n/eY9avhdpMEc8EqaYXto1Bcv0Cno+ZrsfTZIH8J
+    GmcKOzyJqPFyceFznvii9oRU3pT1sFtJqVfwS785UAQ7Gl8mv/Yl2ZBTahoWPuxu
+    fhyrrc7nlYQe5uFX795nbWVL52IkmKYOVVR2oOwdRAF48DnFFxlIQMaLHYMucF9k
+    V/xLXWIltt+C8rtPJX9PW7/pmOKKKq27uiWPAw8dVQ8isMMBUdO56QUgqSOWqeI8
+    2OsfnB5D/ZppBTFH9BJwbQY1RIoap52lEZVZdT1IyUOS2iKDdLeyg+/XKaS+r73T
+    xPkDbukQ7opVI4ECAwEAAaOCAuswggLnMB8GA1UdIwQYMBaAFF86fBEQfgxncWHc
+    i6O1AANn9VccMB0GA1UdDgQWBBR02qnT2E3DB6zdzUO8QZvq5+KMQDAOBgNVHQ8B
+    Af8EBAMCBaAwDAYDVR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYB
+    BQUHAwIwSQYDVR0gBEIwQDA0BgsrBgEEAbIxAQICMTAlMCMGCCsGAQUFBwIBFhdo
+    dHRwczovL3NlY3RpZ28uY29tL0NQUzAIBgZngQwBAgEwfQYIKwYBBQUHAQEEcTBv
+    MEIGCCsGAQUFBzAChjZodHRwOi8vY3J0LnRydXN0LXByb3ZpZGVyLmNuL1RydXN0
+    QXNpYVJTQURWVExTQ0FHMi5jcnQwKQYIKwYBBQUHMAGGHWh0dHA6Ly9vY3NwLnRy
+    dXN0LXByb3ZpZGVyLmNuMB4GA1UdEQQXMBWCE2Rucy5jbmV0Y2V5ZS5ldS5vcmcw
+    ggF8BgorBgEEAdZ5AgQCBIIBbASCAWgBZgB2AHb/iD8KtvuVUcJhzPWHujS0pM27
+    KdxoQgqf5mdMWjp0AAABhqEot5cAAAQDAEcwRQIgY6B8Wms8HEGX5AfVrc0cRJVX
+    WA39Cjr2bDCns04RTpUCIQCWVLv3II4dRjs2dnNi2UZgl17gXS/Fq6x23vtw541K
+    5wB1ANq2v2s/tbYin5vCu1xr6HCRcWy7UYSFNL2kPTBI1/urAAABhqEot+gAAAQD
+    AEYwRAIgE2HY4HnlH1fCJZQE+XAzZfR5e1j9S70Mka9Xam4cAckCIAetBwxTWBjf
+    toqN5ka9J9xP6MGL60QGj/0ujK88hjmYAHUA7s3QZNXbGs7FXLedtM0TojKHRny8
+    7N7DUUhZRnEftZsAAAGGoSi3wgAABAMARjBEAiAwhURV7kZ7DnK3X+dPBvFfxBFm
+    xzDYtIawHHSG0Ps3VwIgFtXfForAl6aSo688S580RXMPWUKc7GmZ/yvfDqLykjIw
+    DQYJKoZIhvcNAQEMBQADggGBAJmRxSw/3LeiCQDBT3UZHL1F18yHIPOwqYnttkKX
+    A5ppOX3SpOxB9MTyBhMnrjb0X5eFonT9iHXAXN31TmLWlF0r3w9YTvqjuO39B89e
+    QHiOzQIW0ZGaV1xObd7voVp0hNg4w7rzujb19TIbVGdHE89Us4GNL7zuyXvYCqpe
+    IXWQYZyt2HUMIXzymwrZCo14ADTt13H2GjR4OZEaNLTliSz9EPBsBNZeLcfzEErT
+    jcMq/KHsbwgvXmzjPsEB77rsKQc0hihicT0vaukBdc/8fze15yVEG1fI3FlRPuaV
+    pEA2kJb32Vm4q7y7ppoSSzHQABMzQ+RbCJARiJYLfdq1jOColzOFaaQm8zP5nClS
+    Sken1+JrMRcNyuHttImHtXwtTf2guzg9Jbw6rzV4624tiEIje0Hcdgkzj8Rp5Rzo
+    VDIBExMMFgce4VR2MbYx0BK9N8amN0P5L0Szvam/W+5t0Fjf3P0L5QkI84sXVvZx
+    3qc6XPvDeX6OjdeKxOXbAwJSPg==
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIFBzCCA++gAwIBAgIRALIM7VUuMaC/NDp1KHQ76aswDQYJKoZIhvcNAQELBQAw
+    ezELMAkGA1UEBhMCR0IxGzAZBgNVBAgMEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
+    A1UEBwwHU2FsZm9yZDEaMBgGA1UECgwRQ29tb2RvIENBIExpbWl0ZWQxITAfBgNV
+    BAMMGEFBQSBDZXJ0aWZpY2F0ZSBTZXJ2aWNlczAeFw0yMjAxMTAwMDAwMDBaFw0y
+    ODEyMzEyMzU5NTlaMFkxCzAJBgNVBAYTAkNOMSUwIwYDVQQKExxUcnVzdEFzaWEg
+    VGVjaG5vbG9naWVzLCBJbmMuMSMwIQYDVQQDExpUcnVzdEFzaWEgUlNBIERWIFRM
+    UyBDQSBHMjCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAKjGDe0GSaBs
+    Yl/VhMaTM6GhfR1TAt4mrhN8zfAMwEfLZth+N2ie5ULbW8YvSGzhqkDhGgSBlafm
+    qq05oeESrIJQyz24j7icGeGyIZ/jIChOOvjt4M8EVi3O0Se7E6RAgVYcX+QWVp5c
+    Sy+l7XrrtL/pDDL9Bngnq/DVfjCzm5ZYUb1PpyvYTP7trsV+yYOCNmmwQvB4yVjf
+    IIpHC1OcsPBntMUGeH1Eja4D+qJYhGOxX9kpa+2wTCW06L8T6OhkpJWYn5JYiht5
+    8exjAR7b8Zi3DeG9oZO5o6Qvhl3f8uGU8lK1j9jCUN/18mI/5vZJ76i+hsgdlfZB
+    Rh5lmAQjD80M9TY+oD4MYUqB5XrigPfFAUwXFGehhlwCVw7y6+5kpbq/NpvM5Ba8
+    SeQYUUuMA8RXpTtGlrrTPqJryfa55hTuX/ThhX4gcCVkbyujo0CYr+Uuc14IOyNY
+    1fD0/qORbllbgV41wiy/2ZUWZQUodqHWkjT1CwIMbQOY5jmrSYGBwwIDAQABo4IB
+    JjCCASIwHwYDVR0jBBgwFoAUoBEKIz6W8Qfs4q8p74Klf9AwpLQwHQYDVR0OBBYE
+    FF86fBEQfgxncWHci6O1AANn9VccMA4GA1UdDwEB/wQEAwIBhjASBgNVHRMBAf8E
+    CDAGAQH/AgEAMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAiBgNVHSAE
+    GzAZMA0GCysGAQQBsjEBAgIxMAgGBmeBDAECATBDBgNVHR8EPDA6MDigNqA0hjJo
+    dHRwOi8vY3JsLmNvbW9kb2NhLmNvbS9BQUFDZXJ0aWZpY2F0ZVNlcnZpY2VzLmNy
+    bDA0BggrBgEFBQcBAQQoMCYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmNvbW9k
+    b2NhLmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAHMUom5cxIje2IiFU7mOCsBr2F6CY
+    eU5cyfQ/Aep9kAXYUDuWsaT85721JxeXFYkf4D/cgNd9+hxT8ZeDOJrn+ysqR7NO
+    2K9AdqTdIY2uZPKmvgHOkvH2gQD6jc05eSPOwdY/10IPvmpgUKaGOa/tyygL8Og4
+    3tYyoHipMMnS4OiYKakDJny0XVuchIP7ZMKiP07Q3FIuSS4omzR77kmc75/6Q9dP
+    v4wa90UCOn1j6r7WhMmX3eT3Gsdj3WMe9bYD0AFuqa6MDyjIeXq08mVGraXiw73s
+    Zale8OMckn/BU3O/3aFNLHLfET2H2hT6Wb3nwxjpLIfXmSVcVd8A58XH0g==
+    -----END CERTIFICATE-----
+  private_key: |-
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpAIBAAKCAQEAqIVZgux93q2cDmgPovo/2BGIY+1/1/uf95j1q+F2kwRzwSpp
+    he2jUFy/QKej5mux9NkgfwkaZwo7PImo8XJx4XOe+KL2hFTelPWwW0mpV/BLvzlQ
+    BDsaXya/9iXZkFNqGhY+7G5+HKutzueVhB7m4Vfv3mdtZUvnYiSYpg5VVHag7B1E
+    AXjwOcUXGUhAxosdgy5wX2RX/EtdYiW234Lyu08lf09bv+mY4ooqrbu6JY8DDx1V
+    DyKwwwFR07npBSCpI5ap4jzY6x+cHkP9mmkFMUf0EnBtBjVEihqnnaURlVl1PUjJ
+    Q5LaIoN0t7KD79cppL6vvdPE+QNu6RDuilUjgQIDAQABAoIBACluc4XZP87t7vap
+    xeJjVSv5j4dF3k8LCZa1j/zclyrpBs6Ab2YieSrqSokKTiT56EwSz8b7xXZ80Ph+
+    vb7yzKXJp9VoN2RsezazOtMOxqgcp3rRi+cmYsLvA3Xwc09k+qqEOp8lQTMqUDaU
+    wDE16byQQqRy2DX11eLOrYrx7i+v/aM8Bi8ObUsHskFErmeOpZxnBLz6CPHWvkrO
+    KVIUfC4bGT2VhGUmctLHt5+ge+Ci9mTzPHU4t8QbipP/cmHNbeV9Y2TUUNNVI/2b
+    kwb7RNfzck2vI4wG+4wNFcj/IGOfSrGJrEcFaJjOJhkog/NEaAD7l1dck93cNyaJ
+    ca5xP8MCgYEA7j/Wv0QdPkuF/PMCRVLrqenEDbutqatUcqLPJV9vOQR70D19tvcV
+    J4LFdxLBCZwmRnAaD9+d+B8TILQ+MwF5ZI/ruRjDf7V2Fmo3cybrRoW9KHcEGsi/
+    EObTp0aqbZTncoUQ4KVcM/K1P2JHSA6g/lcD7ZOcvK/AJXWYZxcNHk8CgYEAtROS
+    EZBws6WzZFUc8Kbak7+Z23ZI3sseXZI/eQVDgV1q7v0/uduOgtDYOtVDg3OrJjti
+    GdfR/HZXkWfGSNmPdMRsovJkFmWjLX7cpsFWzi53CMJRjcNN3jzb/w84lTrIxYM/
+    vJCN9hv/MYYG/CvRPAkneAnyeIWjE8S63f7gfS8CgYEA2nKaOkD/9zBUKDvAZ0PC
+    ZMa8RkNA1gMLqRhyijfYyRS9WZAoBmzCbrnOyIDfkiokRg1fOBK2ytvjM+dP6IB/
+    h58WaV61UhFVtvOo5+JVcxIJAGMv1kceOScMBaIbfeI73Jr5gKDdy5vMZ9N6vCz9
+    nHa4WUsxOSiEK1SJamyOUK0CgYEAg+8xg5ixdUOrdNRLFNEN+48kRHJn3+UxR85S
+    bxQ1vmFZk650KzBdItWWZy+SVIoHzwB/lwLYXlG/thNdtyDF1Ld1zDg+Us9VWMXR
+    cbL3U50pX/ltwJPn/aBsTuhBOwIs3TSnUPYmaYa2ptfX6Q7oEg09c8oToFsGmlXC
+    LhQSb0MCgYBBAJ/ealKrBPYUYp5LABDXwKly2jHkIlHfFRJqOYVYkumchNOXWYTY
+    hS6nD0ZYoHEnaCRE8lJ80JtkjQrG/qGkJ2C/VPxK8u/yvCA9jhjS9s1JEqRl/s0d
+    qqo6Q63qkfL7vMG4uf4ZbiUy7qwBN1tyQcNJwGtPCtUK7pDCl7da6Q==
+    -----END RSA PRIVATE KEY-----
+  certificate_path: ""
+  private_key_path: ""
+  strict_sni_check: false
+querylog:
+  ignored: []
+  interval: 6h
+  size_memory: 1000
+  enabled: true
+  file_enabled: true
+statistics:
+  ignored: []
+  interval: 48h
+  enabled: true
+filters:
+  - enabled: false
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
+    name: AdAway Default Blocklist
+    id: 1625119229
+  - enabled: false
+    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
+    name: AdGuard DNS filter
+    id: 1629794207
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/cjx82630/cjxlist@master/cjx-annoyance.txt
+    name: cjx82630_cjx-annoyance
+    id: 1638856876
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/minority-mv.txt
+    name: xinggsf minority-mv.txt
+    id: 1639944073
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/rule.txt
+    name: xinggsf rule
+    id: 1659956219
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/xinggsf/Adblock-Plus-Rule@master/mv.txt
+    name: xinggsf-mv
+    id: 1668670533
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/8680/GOODBYEADS@master/allow.txt
+    name: GOODBYEADS allow
+    id: 1668670922
+  - enabled: false
+    url: https://file-git.trli.club/ad-hosts/ad-youtube/ad-youtube-adguardhome.txt
+    name: youtube-adguardhome
+    id: 1675406969
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/8680/GOODBYEADS@master/rules.txt
+    name: GOODBYEADS rule
+    id: 1675406970
+  - enabled: true
+    url: https://cdn.jsdelivr.net/gh/zsakvo/AdGuard-Custom-Rule@master/rule/zhihu-strict.txt
+    name: 知乎过滤器 —— 去除开屏、时间轴、首页推荐、回答列表、回答底部及评论区广告，个人中心VIP横幅
+    id: 1679515226
+whitelist_filters: []
+user_rules:
+  - '#只允许例外能使用IPV4'
+  - '@@||taobao.com^$important,dnstype=A'
+  - '@@||nimg.ws.126.net/^$important,dnstype=A'
+  - '@@||3g.163.com/^$important,dnstype=A'
+  - '@@||jd.com^$important,dnstype=A'
+  - '@@||flyme.cn$important,dnstype=A'
+  - '@@||meizu.com^$important,dnstype=A'
+  - '@@||wl.jd.com^$important,dnstype=A'
+  - '@@||flydigi.com^$important,dnstype=A'
+  - '@@||pv.sohu.com^$important,dnstype=A'
+  - '@@||track.sohu.com^$important,dnstype=A'
+  - '@@||d.ifengimg.com^$important,dnstype=A'
+  - '@@||phoenixos.com^$important,dnstype=A'
+  - '@@||x0.ifengimg.com^$important,dnstype=A'
+  - '@@||etl-xlmc-ssl.xunlei.com^$important'
+  - '@@||api-shoulei-ssl.xunlei.com^$important'
+  - '#@@||cpro.baidustatic.com^$important,dnstype=A'
+  - '  - /googleads.$~script,domain=~googleads.github.io'
+  - '  - /pagead/lvz?'
+  - '||google.com/pagead/'''
+  - '||static.doubleclick.net^$domain=youtube.com'''
+  - '||youtube.com/get_midroll_'''
+  - '||5hz.org^'''
+  - '@@||000714.xyz^'''
+  - '@@||blueskyxn.com^'''
+  - '||topnewsfeeds.net^'''
+  - '||nbryb.com^'''
+  - '||superbdolly.com^'''
+  - '||salutationcheerlessdemote.com^'''
+  - '||buildingdoodlesquare.com^'''
+  - '||colonistnobilityheroic.com^'''
+  - '#只允许例外能使用IPV4'
+  - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
+  - '#||*.*^$dnstype=AAAA'
+  - '@@||static.adguard.com^$important,dnstype=AAAA'
+  - '@@||*.*^$important,dnstype=AAAA,client=''192.168.8.250'''
+  - '@@||*.*^$important,dnstype=AAAA,client=''192.168.8.254'''
+  - '@@||www.163.com^$important,dnstype=AAAA'
+  - '@@||dynv6.com^$important,dnstype=AAAA'
+  - '@@||dynv6.net^$important,dnstype=AAAA'
+  - '@@/edu/$important,dnstype=AAAA'
+  - '@@||edu.cn^$important,dnstype=AAAA'
+  - '@@||*.army^$important,dnstype=AAAA'
+  - '@@||*.etceye.eu.org^$important,dnstype=AAAA'
+  - '@@||*.cnetceye.eu.org^$important,dnstype=AAAA'
+  - '#禁止IPV6解析网页,只有教育网,测速,openvpn连接例外'
+  - '#####限制IPV6地址访问'
+  - '#||*^$client=2409::1/16'
+  - '#||*^$client=fe80::34a0/16'
+  - '#||*^$client=2409::f0a1/16'
+  - '#@@||*^$important,client=2409::8991/16'
+  - '@@||dynv6.com^$important,client=2409::1/16'
+  - '@@||dynv6.net^$important,client=2409::1/16'
+  - '@@||dns.army^$important,client=2409::1/16'
+  - '@@||edu.cn^$important,client=2409::1/16'
+  - '@@||www.163.com^$important,client=2409::1/16'
+  - '#####限制IPV6地址访问'
+  - '#淘宝货物展示相关。'
+  - '@@||cart.tmall.com^$important,dnstype=A'
+  - '@@||pass.tmall.com^$important,dnstype=A'
+  - '@@||ws.mmstat.com^$important,dnstype=A'
+  - '@@||x.alicdn.com^$important,dnstype=A'
+  - '#淘宝货物展示相关。'
+  - '@@||applog.uc.cn^$important #mayi庄园'
+  - '@@||www.xvideos.com^$important,dnstype=A'
+  - '@@||*xvideos*^$important,dnstype=A'
+  - '@@||g.163.com^$important,dnstype=A'
+  - '@@||videoimg.ws.126.net^$important,dnstype=A'
+  - '@@||nimg.ws.126.net^$important,dnstype=A'
+  - '@@||open-image.ws.126.net^$important,dnstype=A'
+  - '@@||live163.ws.126.net^$important,dnstype=A'
+  - '@@||music.163.com^$important'
+  - '#@@||*.netease.com^$important'
+  - '||vod.126.net^$dnsrewrite=NOERROR;A;0.0.0.0  ###网易视频，包括网易云'
+  - '##||vod.126.net^$dnsrewrite=NOERROR;A;0.0.0.0  ###网易视频，包括网易云'
+  - '##8.2 8.254取消Dns限制'
+  - '#@@||*^$client=''192.168.8.2'''
+  - '#@@||*^$client=''192.168.8.200'''
+  - '#@@||*^$client=''192.168.8.250'''
+  - '####迅雷远程下载###'
+  - '@@||libtorrent.org^$client=192.168.8.254'
+  - '@@||lixian.xunlei.com^$client=192.168.8.254'
+  - '@@||shub.sandai.net^$client=192.168.8.254'
+  - '@@||wap.sandai.net^$client=192.168.8.254'
+  - '@@||analysis-acc-ssl.xunlei.com^$client=192.168.8.254'
+  - '@@||speed.auth.vip.xunlei.com^$client=192.168.8.254'
+  - '@@||team.speed.cdn.vip.xunlei.com^$client=192.168.8.254'
+  - '####迅雷远程下载###'
+  - '#8.2 8.254取消Dns限制'
+  - '##themoviedb.org指定DNS解析。'
+  - '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.226.237.39'
+  - '||api.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.113'
+  - '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.43'
+  - '||www.themoviedb.org^$dnsrewrite=NOERROR;A;13.225.94.13'
+  - '##themoviedb.org指定DNS解析。'
+  - '##百度翻译视频指定DNS解析。'
+  - '||bdimg.com^$important'
+  - '||dbankcdn.com^$important'
+  - '||update.baidu.com^$important'
+  - '||userident.baidu.com^$important'
+  - '||abymg.baidu.com^$important'
+  - '||mbd.baidu.com'
+  - '#||*^$client=192.168.8.136'
+  - '@@||mime.baidu.com^$important,client=192.168.8.136'
+  - '@@||fanyi-app.baidu.com^$important,client=192.168.8.136'
+  - '#fanyi-app.baidu.com是发音的，指定了dns就不能发音了'
+  - '##快手'
+  - '@@||ali.static.yximgs.com^$important'
+  - '@@||tracker.pcdn.yximgs.com^$important'
+  - '##快手'
+  - '##sina.cn'
+  - '@@||mixer.sina.cn^$important'
+  - '@@||gk.sina.cn^$important'
+  - '##sina.cn'
+  - '####hisens广告和视频'
+  - '||hisense.com'
+  - /hisense/
+  - '||hismarttv.com'
+  - '####hisens广告和视频'
+  - '||44766.cc'
+  - '||2mdn.net'
+  - '||doubleclick.net'
+  - '###woiden.id的广告放行@@||doubleclick.net'
+  - '#@@||adservice.google.com^$important'
+  - '#@@||pagead2.googlesyndication.com^$important'
+  - '||grelighting.cn^$important'
+  - '#@@||ht.grelighting.cn^$important'
+  - '#@@||m35.grelighting.cn^$important'
+  - '#@@||www.googletagmanager.com^$important'
+  - '#@@||push.kwd.inkuai.com^$important'
+  - '#@@||api2.e.kuaishou.com^$important'
+  - '#@@||hovv.yilanvaas.com^$important'
+  - '||bdmap1.ifeng.com^$important'
+  - '||map1.ifeng.com^$important'
+  - '||bd3rd.ifeng.com^$important'
+  - '||hivoice-drcn.emui.dbankcloud.com^$important'
+  - '||hwid.platform.hicloud.com^$important'
+  - /dbankcloud/
+  - '##@@||smarthome-drcn.dbankcdn.com^$important  ##华为智慧生活'
+  - '@@||smarthome-drcn.dbankcdn.com^$important'
+  - '@@||browsercfg-drcn.cloud.dbankcloud.cn^$important,dnstype=A'
+  - '@@||dnkeeper.platform.hwcloudtest.cn^$important,dnstype=A'
+  - '@@||hwid-drcn.platform.hicloud.com^$important,dnstype=A'
+  - '@@||metrics1-drcn.dt.dbankcloud.cn^$important,dnstype=A'
+  - '@@||datasync-drcn.cloud.dbankcloud.cn^$important,dnstype=A'
+  - '@@||fanyiapp.cdn.bcebos.com^$important,dnstype=A'
+  - '@@||userinfogw-drcn.cloud.dbankcloud.cn^$important,dnstype=A'
+  - '||cpro.*^$important'
+  - '||*.cpro.*^$important'
+  - '||*.cpro^$important'
+  - '||cpro.baidu.com^$important'
+  - '||bcebos.com'
+  - '||bdstatic.com'
+  - '||data6.video.ptqy.gitv.tv^$important'
+  - ""
+dhcp:
+  enabled: false
+  interface_name: ""
+  local_domain_name: lan
+  dhcpv4:
+    gateway_ip: ""
+    subnet_mask: ""
+    range_start: ""
+    range_end: ""
+    lease_duration: 86400
+    icmp_timeout_msec: 1000
+    options: []
+  dhcpv6:
+    range_start: ""
+    lease_duration: 86400
+    ra_slaac_only: false
+    ra_allow_slaac: false
+clients:
+  runtime_sources:
+    whois: true
+    arp: true
+    rdns: true
+    dhcp: true
+    hosts: true
+  persistent: []
+log:
+  file: ""
+  max_backups: 0
+  max_size: 100
+  max_age: 3
+  compress: false
+  local_time: false
+  verbose: false
+os:
+  group: ""
+  user: ""
+  rlimit_nofile: 0
+schema_version: 24

@@ -2,29 +2,38 @@
 config dnsmasq
 	option domainneeded '1'
 	option localise_queries '1'
-	option rebind_protection '1'
-	option rebind_localhost '1'
 	option local '/lan/'
 	option domain 'lan'
 	option expandhosts '1'
 	option authoritative '1'
 	option readethers '1'
 	option leasefile '/tmp/dhcp.leases'
-	option nonwildcard '1'
-	option localservice '1'
+	option ednspacket_max '1232'
+	option dns_redirect '1'
+	option allservers '1'
+	option min_ttl '3600'
+	option cachesize '4096'
+	option dnsforwardmax '4096'
+	option localservice '0'
+	option rebind_protection '0'
 	option localuse '1'
 	option port '53'
-	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	list server '127.0.0.1#1745'
+	option noresolv '1'
 
 config dhcp 'lan'
 	option interface 'lan'
-	option start '10'
-	option limit '190'
+	option start '100'
+	option limit '150'
 	option leasetime '12h'
-	option ra_slaac '1'
+	option dhcpv4 'server'
 	list ra_flags 'managed-config'
 	list ra_flags 'other-config'
+	option force '1'
 	option ra 'server'
+	option ra_management '1'
+	option ra_default '1'
+	option dns_service '0'
 
 config dhcp 'wan'
 	option interface 'wan'
@@ -38,64 +47,135 @@ config odhcpd 'odhcpd'
 
 config srvhost
 	option srv '_vlmcs._tcp'
-	option target 'OpenWrt'
+	option target 'AX6S-Wx-eycoot_cn'
 	option port '1688'
 	option class '0'
 	option weight '100'
 
 config host
-	option name 'ma-rom'
+	option name 'hasense-Lan'
 	option dns '1'
-	option mac 'bc:25:e0:45:12:d8'
-	option ip '192.168.8.194'
+	option mac '08:ba:5f:ad:8d:db'
+	option ip '192.168.8.218'
+	option leasetime 'infinite'
 
 config host
+	option name 'pan_jx'
 	option dns '1'
-	option mac 'D4:B7:61:99:BD:0B'
-	option ip '192.168.8.138'
-	option name 'hasens-wifi'
+	option mac '04:4a:6c:a3:6f:f1'
+	option ip '192.168.8.153'
+	option leasetime 'infinite'
 
 config host
+	option name 'wmc180_ap'
 	option dns '1'
-	option mac '08:BA:5F:AD:8D:DB'
-	option ip '192.168.8.201'
-	option name 'hasens-lan'
+	option mac 'f4:84:8d:06:6e:14'
+	option ip '192.168.8.137'
 
 config host
-	option name 'HQ5C'
+	option name 'pve170'
+	option dns '1'
+	option mac '40:b0:76:47:76:6f'
+	option ip '192.168.8.170'
+	option leasetime 'infinite'
+
+config host
+	option name 'My_pro8'
+	option dns '1'
+	option mac 'd8:a4:91:51:d4:8f'
+	option ip '192.168.8.235'
+	option leasetime 'infinite'
+
+config host
+	option name 'H1'
+	option dns '1'
+	option mac '8e:1c:da:c0:1b:e3'
+	option ip '192.168.8.123'
+	option leasetime 'infinite'
+
+config host
+	option name 'HQ_AI'
 	option dns '1'
 	option mac '60:7d:09:20:64:06'
 	option ip '192.168.8.130'
+	option leasetime 'infinite'
 
 config host
-	option name 'route-D2'
+	option name 'Pantum-m6202nw'
 	option dns '1'
-	option mac '20:76:93:48:3a:ff'
-	option ip '192.168.8.2'
-
-config host
-	option name 'Unas-6'
-	option dns '1'
-	option mac '3e:99:2b:d4:5b:d0'
-	option ip '192.168.8.254'
-
-config host
-	option dns '1'
-	option mac '6c:2d:24:a6:ee:38'
-	option ip '192.168.8.177'
-	option name 'jx_watch'
-
-config host
-	option name 'X10'
-	option dns '1'
-	option mac '2c:c5:46:3f:2e:54'
-	option ip '192.168.8.152'
+	option mac 'ac:c5:1b:04:8a:ac'
+	option ip '192.168.8.118'
+	option leasetime 'infinite'
 
 config domain
 	option name 'openwrt.lan'
 	option ip '192.168.8.1'
 
 config domain
-	option ip '192.168.8.254'
-	option name 'Jhome.lan'
+	option name 'dns.cnetceye.eu.org'
+	option ip '192.168.8.1'
+	option comments 'doh'
+
+config domain
+	option name '250dns.cnetceye.eu.org'
+	option ip '192.168.8.250'
+	option comments 'doh'
+
+config host
+	option name 'wife-8pro'
+	option dns '1'
+	option mac '82:cd:94:8f:db:c2'
+	option ip '192.168.8.186'
+	option leasetime 'infinite'
+
+config host
+	option name 'H1_1_hq'
+	option dns '1'
+	option mac '00:e0:4c:99:4a:1f'
+	option ip '192.168.8.174'
+	option leasetime 'infinite'
+
+config host
+	option name 'wie_lite20'
+	option dns '1'
+	option mac 'f0:e4:a2:24:77:b7'
+	option ip '192.168.8.103'
+	option leasetime 'infinite'
+
+config host
+	option name 'TL-SG2008D'
+	option dns '1'
+	option mac 'f4:84:8d:ae:8a:5b'
+	option ip '192.168.8.122'
+	option leasetime 'infinite'
+
+config host
+	option name 'Huawei-Kid-Watch-3-PRO'
+	option ip '192.168.8.197'
+	option mac '94:08:C7:D1:0E:3D'
+
+config host
+	option name 'HONOR_X10-917aa6d64f'
+	option ip '192.168.8.237'
+	option mac '42:46:1C:02:5B:36'
+
+config host
+	option name 'asrwifi'
+	option ip '192.168.8.145'
+	option mac 'AC:93:C4:95:63:7C'
+
+config host
+	option name 'PZ-L8'
+	option ip '192.168.8.240'
+	option mac 'A4:39:B6:08:3C:89'
+
+config host
+	option ip '192.168.8.185'
+	option mac 'D4:B7:61:99:BD:0B'
+
+config host
+	option ip '192.168.8.188'
+	option mac 'C8:F7:42:02:4B:D0'
+	option name 'Opple-light'
+	option dns '1'
 

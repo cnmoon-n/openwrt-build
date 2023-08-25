@@ -1,0 +1,27 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+#modprobe bonding mode=0 miimon=100  #设置bonding模式为0，通用性较好，不依赖交换机协议mode=0 即mode balance-rr 而mode=4 是mode 802.3ad
+
+ip link add bond-lan type bond mode 802.3ad
+
+ip link set lan2 type bond_slave
+
+ip link set lan3 type bond_slave
+
+ip link set lan2 master bond-lan
+
+ip link set lan3 master bond-lan
+
+ip link set bond-lan up
+
+ifconfig lan2 down
+
+ifconfig lan3 down
+
+sleep 1
+
+ifconfig lan2 up
+
+ifconfig lan3 up
+
+exit 0

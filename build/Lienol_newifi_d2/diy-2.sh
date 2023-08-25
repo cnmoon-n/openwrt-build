@@ -3,17 +3,17 @@
 
 
 # 修改openwrt登陆地址,把下面的192.168.8.1修改成你想要的就可以了
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
 
-# 修改主机名字，把D2-Wx-snailnc修改你喜欢的就行（不能纯数字或者使用中文）
-sed -i '/uci commit system/i\uci set system.@system[0].hostname='D2-Wx-eycoot_cn'' package/lean/default-settings/files/zzz-default-settings
+# 修改主机名字，把AX6S-Wx-snailnc修改你喜欢的就行（不能纯数字或者使用中文）
+sed -i '/uci commit system/i\uci set system.@system[0].hostname='AX6S-Wx-eycoot_cn'' package/default-settings/files/zzz-default-settings
 
 # 版本号里显示一个自己的名字（281677160 build $(TZ=UTC-8 date "+%Y.%m.%d") @ 这些都是后增加的）
-sed -i "s/OpenWrt /D2-Wx-eycoot_cn build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/OpenWrt /AX6S-Wx-eycoot_cn build $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" package/default-settings/files/zzz-default-settings
 
 
 # 设置密码为空（安装固件时无需密码登陆，然后自己修改想要的密码）
-#sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
+#sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/default-settings/files/zzz-default-settings
 
 # 替换https-dns-proxy.init文件,解决用LEDE源码加入passwall编译固件后DNS转发127.0.0.1#5053和12.0.0.1#5054问题
 #curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/dev-19.07/net/https-dns-proxy/files/https-dns-proxy.init > feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init

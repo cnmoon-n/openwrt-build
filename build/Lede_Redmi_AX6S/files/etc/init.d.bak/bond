@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+
+USE_PROCD=1
+
+START=19
+
+reload() {
+sh /etc/config/sh/bonding.sh -- reload
+return 0
+}
+restart() {
+sh /etc/config/sh/bond-lan-up.sh -- stop
+}
+start() {
+sh /etc/config/sh/bond-lan-up.sh -- start
+}
+stop() {
+return 0
+}

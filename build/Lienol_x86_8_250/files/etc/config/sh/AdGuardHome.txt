@@ -1,4 +1,0 @@
-#https://static.adguard.com/adguardhome/release/AdGuardHome_linux_${Arch}.tar.gz
-https://static.adguard.com/adguardhome/beta/AdGuardHome_linux_amd64.tar.gz
-#更新版本，beta,替换后面release#https://static.adguard.com/adguardhome/release/version.json
-#https://github.com/AdguardTeam/AdGuardHome/releases/download/${latest_ver}/AdGuardHome_linux_${Arch}.tar.gz

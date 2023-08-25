@@ -1,7 +1,7 @@
 
 config unblockmusic
 	option endpoint 'http://music.163.com'
-	option enabled '1'
+	option enabled '0'
 	option apptype 'nodejs'
 	option autoupdate '1'
 	option flac_enabled '0'

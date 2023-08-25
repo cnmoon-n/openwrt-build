@@ -1,0 +1,20 @@
+#!/bin/sh /etc/rc.common
+##/etc/init.d/bond enable
+USE_PROCD=1
+
+START=99
+STOP=01
+
+
+
+
+
+
+ip link add bond-lan type bond miimon 100 mode balance-rr xmit_hash_policy layer3+4
+ip link set lan2 type bond_slave
+ip link set lan3 type bond_slave
+sleep 1
+ip link set bond-lan up
+sleep 3
+ip link set dev lan2 master bond-lan
+ip link set dev lan3 master bond-lan

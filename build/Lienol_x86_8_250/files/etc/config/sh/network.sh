@@ -1,0 +1,1 @@
+/etc/init.d/network restart && /etc/init.d/openvpn restart && echo netwok,openvpn已重置 > /etc/config/sh/已重置.log

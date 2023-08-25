@@ -10,18 +10,21 @@
 #
 
 # 使用源码自带passwall等出国软件
-echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
-echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
-echo src-git OpenAppFilter https://github.com/destan19/OpenAppFilter.git OpenAppFilter >> feeds.conf.default
-echo src-git opentopd  https://github.com/281677160/AdGuardHome.git  >> feeds.conf.default
+#echo src-git helloworld https://github.com/fw876/helloworld >> feeds.conf.default
+#echo src-git netspeedtest https://github.com/sirpdboy/netspeedtest.git >> feeds.conf.default
+#echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
+#echo src-git OpenAppFilter https://github.com/destan19/OpenAppFilter.git OpenAppFilter >> feeds.conf.default
+#echo src-git opentopd  https://github.com/liuran001/openwrt-packages.git  >> feeds.conf.default
 #echo src-git opentopd  https://github.com/rufengsuixing/luci-app-adguardhome.git >> feeds.conf.default
 #echo 'src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git' >>feeds.conf.default
 #echo 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall.git;packages' >>feeds.conf.default
 
-#还有命令创ttyd
-#自己拉去master其中tree/master 换成trunk
-#svn co https://github.com/281677160/openwrt-package/tree/master/feeds/luci/applications/luci-app-smartdns package/luci-app-smartdns
-#svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns package/luci-app-smartdns
+
+
+#svn co https://github.com/liuran001/openwrt-packages/branches/adguardhome package/adguardhome
+svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-adguardhome package/luci-app-adguardhome
+
+
 
 #以下没有验证
 #cat >$NETIP <<-EOF

@@ -1,65 +1,41 @@
 
 config interface 'loopback'
-	option ifname 'lo'
+	option device 'lo'
 	option proto 'static'
 	option ipaddr '127.0.0.1'
 	option netmask '255.0.0.0'
 
 config globals 'globals'
+	option packet_steering '1'
+	option ula_prefix 'fd22:09ce:b087::/48'
+
+config device
+	option name 'br-lan'
+	option type 'bridge'
+	list ports 'lan1'
+	list ports 'lan2'
+	list ports 'lan3'
+	list ports 'lan4'
 
 config interface 'lan'
-	option type 'bridge'
-	option ifname 'eth0.1'
+	option device 'br-lan'
 	option proto 'static'
 	option netmask '255.255.255.0'
-	option ip6assign '60'
+	option ip6assign '64'
 	option ipaddr '192.168.8.1'
 
-config device 'lan_eth0_1_dev'
-	option name 'eth0.1'
-	option macaddr '20:76:93:48:3a:ff'
-
 config interface 'wan'
-	option ifname 'eth0.2'
-	option _orig_ifname 'eth0.2'
-	option _orig_bridge 'false'
+	option device 'wan'
 	option proto 'pppoe'
 	option username '13696227799'
 	option password '227799'
 	option ipv6 'auto'
-	option keepalive '0'
 
-config device 'wan_eth0_2_dev'
-	option name 'eth0.2'
-	option macaddr '20:76:93:48:3b:01'
-
-config switch
-	option name 'switch0'
-	option reset '1'
-	option enable_vlan '1'
-
-config switch_vlan
-	option device 'switch0'
-	option vlan '1'
-	option ports '0 1 2 3 6t'
-
-config switch_vlan
-	option device 'switch0'
-	option vlan '2'
-	option ports '4 6t'
-
-config interface 'vpn0'
-	option ifname 'tun0'
+config interface 'tun1'
 	option proto 'none'
+	option device 'tun1'
 
-config interface 'vpn_server'
+config interface 'tun2'
 	option proto 'none'
-	option ifname 'tun1'
-
-config interface 'modem'
-	option proto 'static'
-	option ifname 'eth0.2'
-	option ipaddr '192.168.1.100'
-	option netmask '255.255.255.0'
-	option gateway '192.168.1.1'
+	option device 'tun2'
 

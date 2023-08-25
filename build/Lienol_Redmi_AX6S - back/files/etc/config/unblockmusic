@@ -1,0 +1,11 @@
+
+config unblockmusic
+	option endpoint 'http://music.163.com'
+	option apptype 'nodejs'
+	option autoupdate '1'
+	option flac_enabled '0'
+	option local_vip '0'
+	option enabled '1'
+	option musicapptype 'migu'
+	option replace_music_source '320000'
+
