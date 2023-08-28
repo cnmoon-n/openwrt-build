@@ -262,4 +262,3 @@ jobs:
               
 
               WeTransfer：${{ env.WETRANSFER_URL }}
-              
