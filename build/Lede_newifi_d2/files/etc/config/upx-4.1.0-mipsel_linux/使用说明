@@ -1,0 +1,4 @@
+wget https://github.com/upx/upx/releases/download/${latest_ver}/upx-3.93-amd64_linux.tar.xz
+tar xvf upx-3.93-amd64_linux.tar.xz 
+cd upx-3.93-amd64_linux
+./upx -1 client_linux_amd64 -o client_linux_amd64_upx

@@ -27,20 +27,9 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-    - 127.0.0.1:6053
-    - 127.0.0.1:7913
-    - '[/googlevideo.com/]127.0.0.1:7874'
-    - '[/xvideos-cdn.com/]127.0.0.1:7874'
-    - '[/xvideos.com/]127.0.0.1:7874'
-    - '[/google.com/]127.0.0.1:7874'
-    - '[/youtube.com/]127.0.0.1:7874'
-    - '#[/github.com/]127.0.0.1:7874'
-    - '[/ytimg.com/]127.0.0.1:7874'
+    - 127.0.0.1:7874
     - '[/dnsapi.cn/]223.5.5.5'
     - '[/dynv6.com/]223.5.5.5'
-    - '[/jaist.ac.jp/]223.5.5.5'
-    - '[/jsdelivr/]223.5.5.5'
-    - '[/clang.cn/]223.5.5.5'
     - '#223.5.5.5'
     - '#8.8.8.8'
     - '#2400:3200::1'

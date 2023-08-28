@@ -3,7 +3,7 @@
 
 
 # 修改openwrt登陆地址,把下面的192.168.8.1修改成你想要的就可以了
-sed -i 's/192.168.1.1/192.168.8.2/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/192.168.8.2/g' package/base-files/files/bin/config_generate
 
 # 修改主机名字，把D2-Wx-snailnc修改你喜欢的就行（不能纯数字或者使用中文）
 sed -i '/uci commit system/i\uci set system.@system[0].hostname='D2-Wx-eycoot_cn'' package/lean/default-settings/files/zzz-default-settings
