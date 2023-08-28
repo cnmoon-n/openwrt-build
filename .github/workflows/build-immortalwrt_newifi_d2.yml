@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: 'immortalwrt_newifi_d2'
+        description: 'build-immortalwrtt'
         required: true
         default: 'immortalwrt_newifi_d2'
 
