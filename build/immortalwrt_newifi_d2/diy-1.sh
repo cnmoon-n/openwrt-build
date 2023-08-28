@@ -27,9 +27,12 @@ git clone -b main --depth 1 https://github.com/XiaoBinin/luci-app-adguardhome.gi
 #git clone -b main --depth 1 https://github.com/xiaorouji/openwrt-passwall2.git
 #mosdns
 git clone -b v5 --depth 1 https://github.com/sbwml/luci-app-mosdns.git
+#smartdns
+git clone -b master --depth 1 https://github.com/pymumu/luci-app-smartdns.git
 #lucky
 git clone -b main --depth 1 https://github.com/sirpdboy/luci-app-lucky.git
 
+echo src-git OpenClash https://github.com/vernesong/OpenClash.git  >> feeds.conf.default
 #以下没有验证
 #cat >$NETIP <<-EOF
 #uci set network.lan.ipaddr='192.168.2.2'                                    # IPv4 地址(openwrt后台地址)
